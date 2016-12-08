@@ -4,5 +4,5 @@ const createStore = redux.createStore;
 
 const reducers = require('./reducers/index');
 
-const store = createStore(reducers.mtgReducer);
+const store = createStore(reducers.mainReducer);
 module.exports  = store;
