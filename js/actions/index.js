@@ -1,4 +1,5 @@
 const fetch = require('isomorphic-fetch');
+const store = require('../store');
 
 //Add a user
 const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
@@ -57,6 +58,12 @@ const removeUserError = (error) => {
 	}
 };
 
+const removeUser = (username) => {
+	return (dispatch) => {
+
+	}
+};
+
 //Add a deck
 const ADD_DECK_SUCCESS = 'ADD_DECK_SUCCESS'
 const addDeckSuccess = (deck, format) => {
@@ -79,8 +86,8 @@ const addDeck = (deckName, deckFormat) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck', {
 			method: 'POST',
 			body: JSON.stringify({
-				name: deckName,
-				format: deckFormat
+				name: document.getElementById('deckName').value,
+				format: document.getElementById('deckFormat').value
 			})
 		});
 		fetch(request)
@@ -88,7 +95,9 @@ const addDeck = (deckName, deckFormat) => {
 			return response.json()
 		})
 		.then( (data) => {
-			return
+			return dispatch(
+				addDeckSuccess(data.deckName, data.deckFormat)
+			)
 		})
 		.catch( (err) => {
 			return dispatch(
@@ -136,9 +145,10 @@ const removeDeck = (deckName) => {
 
 //Add card to deck
 const ADD_CARD_SUCCESS = 'ADD_CARD_SUCCESS';
-const addCardSuccess = (card) => {
+const addCardSuccess = (deckName, card) => {
 	return {
 		type: ADD_CARD,
+		deckName: deckName,
 		card: card
 	}
 };
@@ -163,7 +173,9 @@ const addCard = (deckName, cards) => {
 			return response.json()
 		})
 		.then( (data) => {
-			return
+			return dispatch(
+				addCardSuccess(data.deckName, data.card)
+			)
 		})
 		.catch( (err) => {
 			return dispatch(
@@ -189,12 +201,12 @@ const removeCardError = (error) => {
 	}
 };
 
-const removeCard = (deckName, cards) => {
+const removeCard = (deckName, card) => {
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/' + deckName, {
 			method: 'UPDATE',
 			body: JSON.stringify({
-				cards: cards
+				cards: card
 			})
 		});
 		fetch(request)
@@ -202,7 +214,9 @@ const removeCard = (deckName, cards) => {
 			return response.json()
 		})
 		.then( (data) => {
-			return
+			return dispatch(
+				removeCardSuccess(data.deckName, data.cards)
+			)
 		})
 		.catch( (err) => {
 			return dispatch(
@@ -269,7 +283,10 @@ const cardSearchError = (error) => {
 
 const cardSearch = (cards) => {
 	return(dispatch) => {
-		const request = ('https://still-island-83205.herokuapp.com/cards/');
+		const params = store.getState().filters;
+		let query = '';
+		Object.key(params).forEach(key == query + (query.length==0?'?':'&') + key + '=' + params[key])
+		const request = ('https://still-island-83205.herokuapp.com/cards/' + query);
 		fetch(request)
 		.then( (response) => {
 			return response.json()

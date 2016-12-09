@@ -13,7 +13,8 @@ class AddDeck extends React.Component {
 			<div>
 				<h2>Name your new deck</h2>
 				<form onSubmit={this.submitHandler}>
-					<Input className="deckName" placeholder="Name" />
+					<Input className="deckInput" id="deckName" placeholder="Name" />
+					<Input className="deckInput" id="deckFormat" placeholder="Format" />
 					<Button className="addDeck" type="submit" text="Add" />
 				</form>
 			</div>
