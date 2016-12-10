@@ -39,7 +39,12 @@ const mainReducer = (state = initialState ,action) => {
 		case Actions.removeDeckSuccess:
 			return Object.assign({}, state, {
 				//Filter
-				deckList: state.deckList.splice(state.deckList.indexOf(Actions.deckName), 1)
+				deckList: state.deckList.filter((deck) => {
+					if (deck.deckName === Actions.deckName) {
+						state.deckList.splice(state.deckList.indexOf(deck), 1)
+					}
+				})
+				// deckList: state.deckList.splice(state.deckList.indexOf(Actions.deckName), 1)
 			})
 
 		case Actions.addCardSuccess:
