@@ -14,8 +14,6 @@ let initialState = {
 
 const mainReducer = (state = initialState ,action) => {
 
-	let deckIndex = state.deckList.indexOf(Actions.deckName);
-
 	switch (action) {
 
 		case Actions.addUserSuccess:
@@ -40,23 +38,49 @@ const mainReducer = (state = initialState ,action) => {
 			return Object.assign({}, state, {
 				//Filter
 				deckList: state.deckList.filter((deck) => {
-					if (deck.deckName === Actions.deckName) {
-						state.deckList.splice(state.deckList.indexOf(deck), 1)
-					}
+					return deck.deckName != Actions.deckName
 				})
 				// deckList: state.deckList.splice(state.deckList.indexOf(Actions.deckName), 1)
 			})
 
 		case Actions.addCardSuccess:
+			let deck = state.deckList.find( (deck) => {
+				return deck.deckName == Actions.deckName
+			})
+			deck.cardList.push(Actions.card)
 			return Object.assign({}, state, {
-				deckList: state.deckList[deckIndex].push(Actions.card)
+				deckList: state.deckList
 			})
 
 		case Actions.removeCardSuccess:
+			//Find deck
 			let cardIndex = state.deckList[deckIndex].indexOf(Actions.card)
 			return Object.assign({}, state, {
 				deckList: state.deckList[deckIndex].splice(cardIndex, 1)
 			})
+
+		case Actions.addFilters:
+			return Object.assign({}, state, {
+				filters: Actions.filters
+			})
+
+		case Actions.deckName:
+			return Object.assign({}, state, {
+				deckName: Actions.deckName
+			})
+
+		case Actions.deckFormat:
+			return Object.assign({}, state, {
+				deckFormat: Actions.deckFormat
+			})
+
+		case Actions.cardSearchSuccess:
+			return Object.assign({}, state, {
+				cardSearchResults: Actions.cards
+			})
+
+		default:
+			return state
 
 	}
 

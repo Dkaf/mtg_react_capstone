@@ -4,7 +4,9 @@ const ReactDOM = require('react-dom');
 class Input extends React.Component {
 	render() {
 		return (
-			<input className={this.props.className} placeholder={this.props.placeholder}></input>
+			<div>
+				<input className={this.props.className} id={this.props.id} placeholder={this.props.placeholder}></input>
+			</div>
 		);
 	}
 };

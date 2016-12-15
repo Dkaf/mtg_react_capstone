@@ -64,6 +64,24 @@ const removeUser = (username) => {
 	}
 };
 
+//Update new deck name in state
+const DECK_NAME = 'DECK_NAME';
+const deckName = (name) => {
+	return {
+		type: DECK_NAME,
+		name: name
+	}
+}
+
+//Update new deck format in state
+const DECK_FORMAT = 'DECK_FORMAT';
+const deckFormat = (format) => {
+	return {
+		type: DECK_FORMAT,
+		format: format
+	}
+}
+
 //Add a deck
 const ADD_DECK_SUCCESS = 'ADD_DECK_SUCCESS'
 const addDeckSuccess = (deck, format) => {
@@ -86,8 +104,8 @@ const addDeck = (deckName, deckFormat) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck', {
 			method: 'POST',
 			body: JSON.stringify({
-				name: document.getElementById('deckName').value,
-				format: document.getElementById('deckFormat').value
+				name: deckName,
+				format: deckFormat
 			})
 		});
 		fetch(request)
@@ -281,7 +299,7 @@ const cardSearchError = (error) => {
 	}
 };
 
-const cardSearch = (cards) => {
+const cardSearch = () => {
 	return(dispatch) => {
 		const params = store.getState().filters;
 		let query = '';
@@ -293,7 +311,7 @@ const cardSearch = (cards) => {
 		})
 		.then( (data) =>{
 			return dispatch(
-				cardSearchSuccess(cards)
+				cardSearchSuccess(data)
 			)
 		})
 		.catch( (err) => {
@@ -304,8 +322,14 @@ const cardSearch = (cards) => {
 	}
 };
 
-
-
+//Add filters to state
+const ADD_FILTERS = 'ADD_FILTERS';
+const addFilters = (filters) => {
+	return {
+		type: ADD_FILTERS,
+		filters: filters
+	}
+}
 
 exports.ADD_USER_SUCCESS = ADD_USER_SUCCESS;
 exports.addUserSuccess = addUserSuccess;

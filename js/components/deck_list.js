@@ -10,10 +10,9 @@ class DeckList extends React.Component {
 		super(props);
 	}
 	render() {
-		let decks = this.props.decks.map( (deckId)=> {
-			let deck = decks[deckId]
+		let decks = this.props.decks.map( (deck)=> {
 			return (
-				<Deck deckName={deck.name} />
+				<Deck deckName={deck.deckName} />
 			)
 		});
 

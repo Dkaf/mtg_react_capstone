@@ -1,6 +1,8 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
+const RemoveDeck = require('./remove_deck');
+
 
 class Deck extends React.Component {
 	render() {
