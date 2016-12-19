@@ -1,22 +1,31 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const store = require('../store')
+const store = require('../store');
+const Actions = require('../actions/index');
+const connect = require('react-redux').connect;
 
 const Input = require('./input');
 const Button = require('./button');
 
 class AddDeck extends React.Component {
+	constructor(props) {
+  		super(props);
+		this.submitHandler = this.submitHandler.bind(this);
+		this.nameInputHandler = this.nameInputHandler.bind(this);
+		this.formatInputHandler = this.formatInputHandler.bind(this);
+	}
 
-	submitHandler() {
-		store.dispatch(actions.addDeck(store.getState().deckName, store.getState().deckFormat))
+	submitHandler(e) {
+		e.preventDefault();
+		this.props.dispatch(Actions.addDeck(store.getState().deckName, store.getState().deckFormat))
 	}
 
 	nameInputHandler(e) {
-		store.dispatch(actions.deckName(e.target.value))
+		this.props.dispatch(Actions.deckName(e.target.value))
 	}
 
 	formatInputHandler(e) {
-		store.dispatch(actions.deckFormat(e.target.value))
+		this.props.dispatch(Actions.deckFormat(e.target.value))
 	}
 
 	//Input handler
@@ -35,4 +44,6 @@ class AddDeck extends React.Component {
 	}
 };
 
-module.exports = AddDeck;
+const Container = connect()(AddDeck);
+
+module.exports = Container;

@@ -3,7 +3,7 @@ const store = require('../store');
 
 //Add a user
 const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
-const addUserSuccess = (user, password) => {
+const addUserSuccess = (username, password) => {
 	return {
 		type: ADD_USER,
 		username: username,
@@ -83,10 +83,10 @@ const deckFormat = (format) => {
 }
 
 //Add a deck
-const ADD_DECK_SUCCESS = 'ADD_DECK_SUCCESS'
+const ADD_DECK_SUCCESS = 'ADD_DECK_SUCCESS';
 const addDeckSuccess = (deck, format) => {
 	return {
-		type: ADD_DECK,
+		type: ADD_DECK_SUCCESS,
 		deckName: deck,
 		deckFormat: format
 	}
@@ -95,6 +95,7 @@ const addDeckSuccess = (deck, format) => {
 const ADD_DECK_ERROR = 'ADD_DECK_ERROR';
 const addDeckError = (error) => {
 	return {
+		type: ADD_DECK_ERROR,
 		error: error
 	}
 };
@@ -323,13 +324,55 @@ const cardSearch = () => {
 };
 
 //Add filters to state
-const ADD_FILTERS = 'ADD_FILTERS';
-const addFilters = (filters) => {
+const NAME_FILTER = 'NAME_FILTER';
+const nameFilter = (name) => {
 	return {
-		type: ADD_FILTERS,
-		filters: filters
+		type: NAME_FILTER,
+		name: name
 	}
 }
+
+const CMC_FILTER = 'CMC_FILTER';
+const cmcFilter = (cmc) => {
+	return {
+		type: CMC_FILTER,
+		cmc: cmc
+	}
+}
+
+const TYPE_FILTER = 'TYPE_FILTER';
+const typeFilter = (typeOption) => {
+	return {
+		type: ADD_FILTERS,
+		typeOption: typeOption
+	}
+}
+
+const RARITY_FILTER = 'RARITY_FILTER';
+const rarityFilter = (rarity) => {
+	return {
+		type: RARITY_FILTER,
+		rarity: rarity
+	}
+}
+
+const COLOR_FILTER = 'COLOR_FILTER';
+const colorFilter = (color) => {
+	return {
+		type: FIRST_COLOR_FILTER,
+		color: color
+	}
+}
+
+const REMOVE_COLOR_FILTER = 'REMOVE_COLOR_FILTER';
+const removeColorFilter = (color) => {
+	return {
+		type: REMOVE_COLOR_FILTER,
+		color: color
+	}
+}
+
+
 
 exports.ADD_USER_SUCCESS = ADD_USER_SUCCESS;
 exports.addUserSuccess = addUserSuccess;

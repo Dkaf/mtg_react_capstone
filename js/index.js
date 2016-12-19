@@ -12,7 +12,7 @@ const User = require('./components/user');
 document.addEventListener('DOMContentLoaded', () => {
 	ReactDOM.render(
 		<Provider store={store}>
-			<User />
+			<App />
 		</Provider>,
 		document.getElementById('app')
 	)

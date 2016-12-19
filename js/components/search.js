@@ -1,6 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const store = require('../store')
+const actinos = require('../actions/index');
 
 const Input = require('./input');
 const Checkbox = require('./checkbox');
@@ -8,27 +9,39 @@ const Button = require('./button');
 
 class Search extends React.Component {
 
-	submitHandler() {
-		store.dispatch(actions.addFilters(formValues));
+	submitHandler(e) {
+		e.preventDefault();
 		store.dispatch(actions.cardSearch());
 	}
 
-	// let formValues = {
-	// 	name: document.getElementById('cardNameInput').value,
-	// 	cmc: document.getElementById('manaCostInput').value,
-	// 	type: document.getElementById('typeSelector').value,
-	// 	rarity: document.getElementById('raritySelector').value,
-	// 	colors:
-	// };
+	nameFilter(e) {
+		store.dispatch(actions.nameFilter(e.target.value));
+	}
+
+	cmcFilter(e) {
+		store.dispatch(actions.cmcFilter(e.target.value));
+	}
+
+	typeFilter(e) {
+		store.dispatch(actions.typeFilter(e.target.value));
+	}
+
+	rarityFilter(e) {
+		store.dispatch(actions.rarityFilter(e.target.value));
+	}
+
+	colorFilter(e) {
+
+	}
 
 	render() {
 		return (
 			<div>
 				<h2>Card Search</h2>
 				<form onSubmit={this.submitHandler}>
-					<Input className="cardSearch" id="cardNameInput" placeholder="Card Name" />
-					<Input className="cardSearch" id="manaCostInput" placeholder="Mana Cost" />
-					<select id="typeSelector">
+					<Input className="cardSearch" id="cardNameInput" placeholder="Card Name" onChange={this.nameFilter} />
+					<Input className="cardSearch" id="manaCostInput" placeholder="Mana Cost" onChange={this.cmcFilter} />
+					<select id="typeSelector" onChange={this.typeFilter}>
 						<option>Card Type</option>
 						<option value="artifact">Artifact</option>
 						<option value="creature">Creatue</option>
@@ -38,7 +51,7 @@ class Search extends React.Component {
 						<option value="planeswalker">Planeswalker</option>
 						<option value="sorcery">Sorcery</option>
 					</select>
-					<select id="raritySelector">
+					<select id="raritySelector" onChange={this.rarityFilter}>
 						<option>Rarity</option>
 						<option value="basic land">Basic Land</option>
 						<option value="common">Common</option>
@@ -48,11 +61,11 @@ class Search extends React.Component {
 					</select>
 					<label>Colors</label>
 					<fieldset className="colorSelector">
-						<Checkbox className="colorOption" id="blackSelect" value="black" />
-						<Checkbox className="colorOption" id="blueSelect" value="blue" />
-						<Checkbox className="colorOption" id="greenSelect" value="green" />
-						<Checkbox className="colorOption" id="redSelect" value="red" />
-						<Checkbox className="colorOption" id="whiteSelect" value="white" />
+						<Checkbox className="colorOption" id="blackSelect" value="black" onChange={this.colorFilter} />
+						<Checkbox className="colorOption" id="blueSelect" value="blue" onChange={this.colorFilter} />
+						<Checkbox className="colorOption" id="greenSelect" value="green" onChange={this.colorFilter} />
+						<Checkbox className="colorOption" id="redSelect" value="red" onChange={this.colorFilter} />
+						<Checkbox className="colorOption" id="whiteSelect" value="white" onChange={this.colorFilter} />
 					</fieldset>
 					<Button className="submitButton" type="submit" text="submit" />
 				</form>
