@@ -1,6 +1,31 @@
 const fetch = require('isomorphic-fetch');
 const store = require('../store');
 
+
+//Login
+const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+const loginSuccess = (token) => {
+	return {
+		type: LOGIN_SUCCESS,
+		token: token
+	}
+}
+
+// const LOGIN = 'LOGIN';
+// const login = (profile, token) => {
+// 	return (dispatch) {
+//
+// 	}
+// }
+
+//Logout
+const LOGOUT = 'LOGOUT';
+const logout = () => {
+	return {
+		type: LOGOUT
+	}
+}
+
 //Add a user
 const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
 const addUserSuccess = (username, password) => {
@@ -67,6 +92,7 @@ const removeUser = (username) => {
 //Update new deck name in state
 const DECK_NAME = 'DECK_NAME';
 const deckName = (name) => {
+	console.log(name);
 	return {
 		type: DECK_NAME,
 		name: name
@@ -100,10 +126,15 @@ const addDeckError = (error) => {
 	}
 };
 
-const addDeck = (deckName, deckFormat) => {
+const addDeck = (deckName, deckFormat, token) => {
+	console.log(deckName, deckFormat);
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck', {
 			method: 'POST',
+			headers: {
+				'Authorization': 'Bearer' + token.idToken,
+				'Content-Type': 'Application/jsonParser'
+			},
 			body: JSON.stringify({
 				name: deckName,
 				format: deckFormat
@@ -289,6 +320,7 @@ const deckSearch = (deckName) => {
 const CARD_SEARCH_SUCCESS = 'CARD_SEARCH_SUCCESS';
 const cardSearchSuccess = (cards) => {
 	return {
+		type: CARD_SEARCH_SUCCESS,
 		cards: cards
 	}
 };
@@ -296,15 +328,16 @@ const cardSearchSuccess = (cards) => {
 const CARD_SEARCH_ERROR = 'CARD_SEARCH_ERROR';
 const cardSearchError = (error) => {
 	return {
+		type: CARD_SEARCH_ERROR,
 		error: error
 	}
 };
 
-const cardSearch = () => {
+const cardSearch = (filters) => {
 	return(dispatch) => {
-		const params = store.getState().filters;
+		console.log(filters);
 		let query = '';
-		Object.key(params).forEach(key == query + (query.length==0?'?':'&') + key + '=' + params[key])
+		Object.keys(filters).forEach((key) => {query = query + (query.length==0?'?':'&') + key + '=' + filters[key]})
 		const request = ('https://still-island-83205.herokuapp.com/cards/' + query);
 		fetch(request)
 		.then( (response) => {
@@ -359,7 +392,7 @@ const rarityFilter = (rarity) => {
 const COLOR_FILTER = 'COLOR_FILTER';
 const colorFilter = (color) => {
 	return {
-		type: FIRST_COLOR_FILTER,
+		type: COLOR_FILTER,
 		color: color
 	}
 }
@@ -372,8 +405,18 @@ const removeColorFilter = (color) => {
 	}
 }
 
+const COLORS_TO_STRING = 'COLORS_TO_STRING';
+const colorsToString = () => {
+	return {
+		type: COLORS_TO_STRING
+	}
+}
 
 
+exports.LOGIN_SUCCESS = LOGIN_SUCCESS;
+exports.loginSuccess = loginSuccess;
+exports.LOGOUT = LOGOUT;
+exports.logout = logout;
 exports.ADD_USER_SUCCESS = ADD_USER_SUCCESS;
 exports.addUserSuccess = addUserSuccess;
 exports.ADD_USER_ERROR = ADD_USER_ERROR;
@@ -384,6 +427,10 @@ exports.removeUserSuccess = removeUserSuccess;
 exports.REMOVE_USER_ERROR = REMOVE_USER_ERROR;
 exports.removeUserError = removeUserError;
 exports.removeUser = removeUser;
+exports.DECK_NAME = DECK_NAME;
+exports.deckName = deckName;
+exports.DECK_FORMAT = DECK_FORMAT;
+exports.deckFormat = deckFormat;
 exports.ADD_DECK_SUCCESS = ADD_DECK_SUCCESS;
 exports.addDeckSuccess = addDeckSuccess;
 exports.ADD_DECK_ERROR = ADD_DECK_ERROR;
@@ -409,3 +456,21 @@ exports.deckSearchSuccess = deckSearchSuccess;
 exports.DECK_SEARCH_ERROR = DECK_SEARCH_ERROR;
 exports.deckSearchError = deckSearchError;
 exports.deckSearch = deckSearch;
+exports.NAME_FILTER = NAME_FILTER;
+exports.nameFilter = nameFilter;
+exports.CMC_FILTER = CMC_FILTER;
+exports.TYPE_FILTER = TYPE_FILTER;
+exports.typeFilter = typeFilter;
+exports.RARITY_FILTER = RARITY_FILTER;
+exports.rarityFilter = rarityFilter;
+exports.COLOR_FILTER = COLOR_FILTER;
+exports.colorFilter = colorFilter;
+exports.REMOVE_COLOR_FILTER = REMOVE_COLOR_FILTER;
+exports.removeColorFilter = removeColorFilter;
+exports.COLORS_TO_STRING = COLORS_TO_STRING;
+exports.colorsToString = colorsToString;
+exports.CARD_SEARCH_SUCCESS = CARD_SEARCH_SUCCESS;
+exports.cardSearchSuccess = cardSearchSuccess;
+exports.CARD_SEARCH_ERROR = CARD_SEARCH_ERROR;
+exports.cardSearchError = cardSearchError;
+exports.cardSearch = cardSearch;

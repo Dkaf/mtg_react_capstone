@@ -1,7 +1,7 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const store = require('../store')
-const actinos = require('../actions/index');
+const actions = require('../actions/index');
 
 const Input = require('./input');
 const Checkbox = require('./checkbox');
@@ -11,7 +11,8 @@ class Search extends React.Component {
 
 	submitHandler(e) {
 		e.preventDefault();
-		store.dispatch(actions.cardSearch());
+		store.dispatch(actions.colorsToString());
+		store.dispatch(actions.cardSearch(store.getState().filters));
 	}
 
 	nameFilter(e) {
@@ -31,7 +32,10 @@ class Search extends React.Component {
 	}
 
 	colorFilter(e) {
-
+		if (!e.target.checked) {
+			store.dispatch(actions.removeColorFilter(e.target.value))
+		}
+		store.dispatch(actions.colorFilter(e.target.value));
 	}
 
 	render() {
@@ -61,14 +65,15 @@ class Search extends React.Component {
 					</select>
 					<label>Colors</label>
 					<fieldset className="colorSelector">
-						<Checkbox className="colorOption" id="blackSelect" value="black" onChange={this.colorFilter} />
-						<Checkbox className="colorOption" id="blueSelect" value="blue" onChange={this.colorFilter} />
-						<Checkbox className="colorOption" id="greenSelect" value="green" onChange={this.colorFilter} />
-						<Checkbox className="colorOption" id="redSelect" value="red" onChange={this.colorFilter} />
-						<Checkbox className="colorOption" id="whiteSelect" value="white" onChange={this.colorFilter} />
+						<Checkbox className="colorOption" id="blackSelect" value="black" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="blueSelect" value="blue" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="greenSelect" value="green" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="redSelect" value="red" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="whiteSelect" value="white" onClick={this.colorFilter} />
 					</fieldset>
 					<Button className="submitButton" type="submit" text="submit" />
 				</form>
+				<div id="searchResults">{store.getState().cardSearchResults}</div>
 			</div>
 		);
 	}

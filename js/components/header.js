@@ -3,6 +3,8 @@ const ReactDOM = require('react-dom');
 const router = require('react-router');
 const Link = router.Link;
 const store = require('../store');
+const actions = require('../actions/index')
+const connect = require('react-redux').connect
 
 class Header extends React.Component {
 	constructor() {
@@ -15,16 +17,12 @@ class Header extends React.Component {
 	}
 
 	login() {
-		this.props.lock.show((err, profile, token) => {
-			if(err) {
-				alert(err)
-			}
-			this.setState({autenticated: true});
-		});
+		this.props.lock.show();
 	}
 
 	logout() {
-		this.setState({authenticated: false});
+		// this.setState({authenticated: false});
+		this.props.dispatch(actions.logout());
 	}
 
 	render() {
@@ -37,5 +35,7 @@ class Header extends React.Component {
 		);
 	}
 }
+
+const Container = connect()(Header)
 
 module.exports = Header;

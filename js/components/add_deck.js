@@ -17,7 +17,8 @@ class AddDeck extends React.Component {
 
 	submitHandler(e) {
 		e.preventDefault();
-		this.props.dispatch(Actions.addDeck(store.getState().deckName, store.getState().deckFormat))
+		console.log(store.getState())
+		this.props.dispatch(Actions.addDeck(store.getState().deckName, store.getState().deckFormat, store.getState().token))
 	}
 
 	nameInputHandler(e) {

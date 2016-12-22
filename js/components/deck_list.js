@@ -29,7 +29,7 @@ class DeckList extends React.Component {
 let mapStateToProps = (state, props) => {
 	return {
 		decks: state.deckList
-	};
+	}
 };
 
 const Container = connect(mapStateToProps)(DeckList)

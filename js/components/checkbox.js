@@ -6,7 +6,7 @@ class Checkbox extends React.Component {
 		return (
 			<div>
 				<label htmlFor={this.props.id}>{this.props.value}</label>
-				<input type="checkbox" className={this.props.className} id={this.props.id} value={this.props.value}></input>
+				<input type="checkbox" className={this.props.className} id={this.props.id} value={this.props.value} onClick={this.props.onClick}></input>
 			</div>
 		);
 	}
