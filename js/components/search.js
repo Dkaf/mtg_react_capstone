@@ -12,7 +12,7 @@ class Search extends React.Component {
 	submitHandler(e) {
 		e.preventDefault();
 		store.dispatch(actions.colorsToString());
-		store.dispatch(actions.cardSearch(store.getState().filters));
+		store.dispatch(actions.cardSearch(store.getState().filters, store.getState().token));
 	}
 
 	nameFilter(e) {
@@ -35,12 +35,15 @@ class Search extends React.Component {
 		if (!e.target.checked) {
 			store.dispatch(actions.removeColorFilter(e.target.value))
 		}
-		store.dispatch(actions.colorFilter(e.target.value));
+		else {
+			store.dispatch(actions.colorFilter(e.target.value));
+		}
+		console.log(store.getState().filters)
 	}
 
 	render() {
 		return (
-			<div>
+			<div id="searchDiv">
 				<h2>Card Search</h2>
 				<form onSubmit={this.submitHandler}>
 					<Input className="cardSearch" id="cardNameInput" placeholder="Card Name" onChange={this.nameFilter} />
@@ -63,15 +66,15 @@ class Search extends React.Component {
 						<option value="rare">Rare</option>
 						<option value="mythic rare">Mythic Rare</option>
 					</select>
-					<label>Colors</label>
+					<label htmlFor="blackSelect" id="colorLabel">Colors</label>
 					<fieldset className="colorSelector">
-						<Checkbox className="colorOption" id="blackSelect" value="black" onClick={this.colorFilter} />
-						<Checkbox className="colorOption" id="blueSelect" value="blue" onClick={this.colorFilter} />
-						<Checkbox className="colorOption" id="greenSelect" value="green" onClick={this.colorFilter} />
-						<Checkbox className="colorOption" id="redSelect" value="red" onClick={this.colorFilter} />
-						<Checkbox className="colorOption" id="whiteSelect" value="white" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="blackSelect" value="black" image="../css/black_mana_button.png" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="blueSelect" value="blue" image="../css/blue.png" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="greenSelect" value="green" image="../css/green.png" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="redSelect" value="red" image="../css/red.png" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="whiteSelect" value="white" image="../css/white.png" onClick={this.colorFilter} />
 					</fieldset>
-					<Button className="submitButton" type="submit" text="submit" />
+					<Button className="submitButton" type="submit" text="Submit" />
 				</form>
 				<div id="searchResults">{store.getState().cardSearchResults}</div>
 			</div>

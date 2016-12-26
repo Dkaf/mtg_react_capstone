@@ -98,20 +98,20 @@ const mainReducer = (state = initialState ,action) => {
 			})
 
 		case Actions.COLOR_FILTER:
-			console.log(state.filters)
 			return Object.assign({}, state, {
 				filters: {colors: state.filters.colors.concat(action.color)}
 			})
 
 		case Actions.REMOVE_COLOR_FILTER:
+			state.filters.colors.splice(state.filters.colors.indexOf(action.color), 1);
 			return Object.assign({}, state, {
-				filters: {colors: state.filters.colors.splice(state.filters.colors.indexOf(action.color), 1)}
+				filters: {colors: state.filters.colors}
 			})
 
 		case Actions.COLORS_TO_STRING:
 			if(state.filters.hasOwnProperty('colors')) {
 				return Object.assign({}, state, {
-					filters: state.filters.colors.toString()
+					filters: {colors: state.filters.colors.toString()}
 				})
 			}
 

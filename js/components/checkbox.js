@@ -4,8 +4,8 @@ const ReactDOM = require('react-dom')
 class Checkbox extends React.Component {
 	render() {
 		return (
-			<div>
-				<label htmlFor={this.props.id}>{this.props.value}</label>
+			<div className="colorCheckbox">
+				<label htmlFor={this.props.id}><img src={this.props.image} className="colorIcon"></img></label>
 				<input type="checkbox" className={this.props.className} id={this.props.id} value={this.props.value} onClick={this.props.onClick}></input>
 			</div>
 		);

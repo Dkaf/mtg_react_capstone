@@ -333,12 +333,17 @@ const cardSearchError = (error) => {
 	}
 };
 
-const cardSearch = (filters) => {
+const cardSearch = (filters, token) => {
 	return(dispatch) => {
 		console.log(filters);
 		let query = '';
 		Object.keys(filters).forEach((key) => {query = query + (query.length==0?'?':'&') + key + '=' + filters[key]})
-		const request = ('https://still-island-83205.herokuapp.com/cards/' + query);
+		const request = ('https://still-island-83205.herokuapp.com/cards/' + query, {
+			headers: {
+				'Authorization': 'Bearer' + token.id
+			},
+			method: 'GET'
+		});
 		fetch(request)
 		.then( (response) => {
 			return response.json()

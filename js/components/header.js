@@ -27,10 +27,9 @@ class Header extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<Link to={'/new-user/'}>Create Account</Link>
-				<a href="#" onClick={this.login}>Login</a>
-				<a href="#" onClick={this.logout}>Logout</a>
+			<div id="headerDiv">
+				<img src="../css/banner.png" id="mainBanner"></img>
+				<div id="login"><a href="#" onClick={this.login} id="loginLink">Login</a></div>
 			</div>
 		);
 	}
