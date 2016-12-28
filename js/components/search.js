@@ -44,7 +44,8 @@ class Search extends React.Component {
 	}
 
 	render() {
-		let searchResults = store.getState().cardSearchResults.forEach( (key) => {
+		let searchResults = store.getState().cardSearchResults.map( (key) => {
+			let card = store.getState().cardSearchResults[key];
 			return (
 				<img src={card.imageUrl}></img>
 			)
