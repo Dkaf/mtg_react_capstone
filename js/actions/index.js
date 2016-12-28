@@ -129,11 +129,11 @@ const addDeckError = (error) => {
 const addDeck = (deckName, deckFormat, token) => {
 	console.log(deckName, deckFormat);
 	return (dispatch) => {
-		const request = new Request('https://still-island-83205.herokuapp.com/user/deck', {
+		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/', {
 			method: 'POST',
 			headers: {
-				'Authorization': 'Bearer' + token.idToken,
-				'Content-Type': 'Application/jsonParser'
+				'Authorization': 'Bearer' + token,
+				'Content-Type': 'Application/json'
 			},
 			body: JSON.stringify({
 				name: deckName,
@@ -146,7 +146,7 @@ const addDeck = (deckName, deckFormat, token) => {
 		})
 		.then( (data) => {
 			return dispatch(
-				addDeckSuccess(data.deckName, data.deckFormat)
+				addDeckSuccess(data.deck.name, data.deck.format)
 			)
 		})
 		.catch( (err) => {
@@ -333,14 +333,14 @@ const cardSearchError = (error) => {
 	}
 };
 
-const cardSearch = (filters, token) => {
+const cardSearch = (filters) => {
 	return(dispatch) => {
 		console.log(filters);
 		let query = '';
 		Object.keys(filters).forEach((key) => {query = query + (query.length==0?'?':'&') + key + '=' + filters[key]})
-		const request = ('https://still-island-83205.herokuapp.com/cards/' + query, {
+		const request = new Request ('https://still-island-83205.herokuapp.com/cards/' + query, {
 			headers: {
-				'Authorization': 'Bearer' + token.id
+				'Content-Type': 'Application/json'
 			},
 			method: 'GET'
 		});
@@ -349,6 +349,7 @@ const cardSearch = (filters, token) => {
 			return response.json()
 		})
 		.then( (data) =>{
+			data.forEach((key) =>{console.log(key.name)});
 			return dispatch(
 				cardSearchSuccess(data)
 			)

@@ -11,8 +11,10 @@ class Search extends React.Component {
 
 	submitHandler(e) {
 		e.preventDefault();
+		console.log(store.getState());
 		store.dispatch(actions.colorsToString());
-		store.dispatch(actions.cardSearch(store.getState().filters, store.getState().token));
+		store.dispatch(actions.cardSearch(store.getState().filters));
+		console.log(store.getState())
 	}
 
 	nameFilter(e) {
@@ -42,6 +44,11 @@ class Search extends React.Component {
 	}
 
 	render() {
+		let searchResults = store.getState().cardSearchResults.forEach( (key) => {
+			return (
+				<img src={card.imageUrl}></img>
+			)
+		})
 		return (
 			<div id="searchDiv">
 				<h2>Card Search</h2>
@@ -76,7 +83,9 @@ class Search extends React.Component {
 					</fieldset>
 					<Button className="submitButton" type="submit" text="Submit" />
 				</form>
-				<div id="searchResults">{store.getState().cardSearchResults}</div>
+				<ul>
+					{this.searchResults}
+				</ul>
 			</div>
 		);
 	}

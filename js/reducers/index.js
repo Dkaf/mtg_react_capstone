@@ -11,7 +11,8 @@ let initialState = {
 	],
 	filters: {
 		colors: []
-	}
+	},
+	cardSearchResults: []
 };
 
 
@@ -20,7 +21,6 @@ const mainReducer = (state = initialState ,action) => {
 	switch (action.type) {
 
 		case Actions.LOGIN_SUCCESS:
-			console.log(action.token);
 			return Object.assign({}, state, {
 				token: action.token
 			})
@@ -45,7 +45,7 @@ const mainReducer = (state = initialState ,action) => {
 		case Actions.ADD_DECK_SUCCESS:
 			//Add deck format
 			return Object.assign({}, state, {
-				deckList: state.deckList.concat({deckName:action.deckName, format:action.format, cardList: []})
+				deckList: state.deckList.concat({deckName:action.deckName, format:action.deckFormat, cardList: []})
 			})
 
 		case Actions.ADD_DECK_ERROR:
@@ -130,7 +130,10 @@ const mainReducer = (state = initialState ,action) => {
 			return Object.assign({}, state, {
 				cardSearchResults: action.cards
 			})
-			console.log(state.cardSearchResults);
+			console.log(state);
+
+		case Actions.CARD_SEARCH_ERROR:
+			return console.log(action.error);
 
 		default:
 			return state
