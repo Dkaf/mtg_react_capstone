@@ -41,11 +41,19 @@ const mainReducer = (state = initialState ,action) => {
 				users: state.users.splice(state.users.indexOf(action.user), 1)
 			})
 
+		case Actions.GET_DECKLIST_SUCCESS:
+			return Object.assign({}, state, {
+				deckList: action.decks
+			})
+
+		case Actions.GET_DECKLIST_ERROR:
+			console.log(action.error)
+
 
 		case Actions.ADD_DECK_SUCCESS:
-			//Add deck format
+			console.log(state);
 			return Object.assign({}, state, {
-				deckList: state.deckList.concat({deckName:action.deckName, format:action.deckFormat, cardList: []})
+				deckList: state.deckList.concat({name:action.deckName, format:action.deckFormat, cardList: []})
 			})
 
 		case Actions.ADD_DECK_ERROR:
@@ -55,19 +63,30 @@ const mainReducer = (state = initialState ,action) => {
 			return Object.assign({}, state, {
 				//Filter
 				deckList: state.deckList.filter((deck) => {
-					return deck.deckName != action.deckName
+					return deck.name != action.deckName
 				})
 				// deckList: state.deckList.splice(state.deckList.indexOf(Actions.deckName), 1)
+			})
+
+		case Actions.REMOVE_DECK_ERROR:
+			return console.log(action.error)
+
+		case Actions.SELECT_DECK:
+			return Object.assign({}, state, {
+				selectedDeck: action.deckName
 			})
 
 		case Actions.ADD_CARD_SUCCESS:
 			let deck = state.deckList.find( (deck) => {
 				return deck.deckName == action.deckName
 			})
-			deck.cardList.push(action.card)
+			deck.cardList.concat(action.card)
 			return Object.assign({}, state, {
 				deckList: state.deckList
 			})
+
+		case Actions.ADD_CARD_ERROR:
+			console.log(action.error)
 
 		case Actions.REMOVE_CARD_SUCCESS:
 			//Find deck
@@ -127,10 +146,10 @@ const mainReducer = (state = initialState ,action) => {
 			})
 
 		case Actions.CARD_SEARCH_SUCCESS:
+			console.log(action.cards)
 			return Object.assign({}, state, {
 				cardSearchResults: action.cards
 			})
-			console.log(state);
 
 		case Actions.CARD_SEARCH_ERROR:
 			return console.log(action.error);

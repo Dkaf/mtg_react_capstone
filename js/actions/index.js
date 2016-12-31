@@ -89,10 +89,52 @@ const removeUser = (username) => {
 	}
 };
 
+//Get decklist from database
+const GET_DECKLIST_SUCCESS = 'GET_DECKLIST_SUCCESS';
+const getDecklistSuccess = (decks) => {
+	return {
+		type: GET_DECKLIST_SUCCESS,
+		decks: decks
+	}
+};
+
+const GET_DECKLIST_ERROR = 'GET_DECKLIST_ERROR';
+const getDecklistError = (error) => {
+	return {
+		type: GET_DECKLIST_ERROR,
+		error: error
+	}
+};
+
+const getDecklist = () => {
+	return(dispatch) => {
+		const request = new Request('https://still-island-83205.herokuapp.com/decks/', {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'Application/json'
+			}
+		});
+		fetch(request)
+		.then( (response) => {
+			return response.json()
+		})
+		.then( (data) => {
+			console.log(data)
+			return dispatch(
+				getDecklistSuccess(data.decks)
+			)
+		})
+		.catch( (err) => {
+			return dispatch(
+				getDecklistError(err)
+			)
+		})
+	}
+}
+
 //Update new deck name in state
 const DECK_NAME = 'DECK_NAME';
 const deckName = (name) => {
-	console.log(name);
 	return {
 		type: DECK_NAME,
 		name: name
@@ -161,7 +203,7 @@ const addDeck = (deckName, deckFormat, token) => {
 const REMOVE_DECK_SUCCESS = 'REMOVE_DECK_SUCCESS';
 const removeDeckSuccess = (deckName) => {
 	return {
-		type: REMOVE_DECK,
+		type: REMOVE_DECK_SUCCESS,
 		deckName: deckName
 	}
 };
@@ -169,21 +211,28 @@ const removeDeckSuccess = (deckName) => {
 const REMOVE_DECK_ERROR = 'REMOVE_DECK_ERROR';
 const removeDeckError = (error) => {
 	return {
+		type: REMOVE_DECK_ERROR,
 		error: error
 	}
 };
 
 const removeDeck = (deckName) => {
+	console.log(deckName)
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/' + deckName, {
-			method: 'DELETE'
+			method: 'DELETE',
+			headers:{
+				'Content-Type': 'Application/json'
+			}
 		})
 		fetch(request)
 		.then( (response) =>{
-			return response.json
+			return response.json()
 		})
 		.then( (data) =>{
-			return
+			return dispatch(
+				removeDeckSuccess(deckName)
+			)
 		})
 		.catch( (err) => {
 			return dispatch(
@@ -193,11 +242,20 @@ const removeDeck = (deckName) => {
 	}
 };
 
+//Select deck
+const SELECT_DECK = 'SELECT_DECK';
+const selectDeck = (deckName) => {
+	return {
+		type: SELECT_DECK,
+		deckName: deckName
+	}
+}
+
 //Add card to deck
 const ADD_CARD_SUCCESS = 'ADD_CARD_SUCCESS';
 const addCardSuccess = (deckName, card) => {
 	return {
-		type: ADD_CARD,
+		type: ADD_CARD_SUCCESS,
 		deckName: deckName,
 		card: card
 	}
@@ -206,14 +264,19 @@ const addCardSuccess = (deckName, card) => {
 const ADD_CARD_ERROR = 'ADD_CARD_ERROR';
 const addCardError = (error) => {
 	return {
+		type: ADD_CARD_ERROR,
 		error: error
 	}
 };
 
 const addCard = (deckName, cards) => {
+	console.log(deckName)
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/' + deckName, {
 			method: 'UPDATE',
+			headers: {
+				'Content-Type': 'Application/json'
+			},
 			body: JSON.stringify({
 				cards: cards
 			})
@@ -224,7 +287,7 @@ const addCard = (deckName, cards) => {
 		})
 		.then( (data) => {
 			return dispatch(
-				addCardSuccess(data.deckName, data.card)
+				addCardSuccess(data.name, data.cards)
 			)
 		})
 		.catch( (err) => {
@@ -433,6 +496,11 @@ exports.removeUserSuccess = removeUserSuccess;
 exports.REMOVE_USER_ERROR = REMOVE_USER_ERROR;
 exports.removeUserError = removeUserError;
 exports.removeUser = removeUser;
+exports.GET_DECKLIST_SUCCESS = GET_DECKLIST_SUCCESS;
+exports.getDecklistSuccess = getDecklistSuccess;
+exports.GET_DECKLIST_ERROR = GET_DECKLIST_ERROR;
+exports.getDecklistError = getDecklistError;
+exports.getDecklist = getDecklist;
 exports.DECK_NAME = DECK_NAME;
 exports.deckName = deckName;
 exports.DECK_FORMAT = DECK_FORMAT;
@@ -447,6 +515,8 @@ exports.removeDeckSuccess = removeDeckSuccess;
 exports.REMOVE_DECK_ERROR = REMOVE_DECK_ERROR;
 exports.removeDeckError = removeDeckError;
 exports.removeDeck = removeDeck;
+exports.SELECT_DECK = SELECT_DECK;
+exports.selectDeck = selectDeck;
 exports.ADD_CARD_SUCCESS = ADD_CARD_SUCCESS;
 exports.addCardSuccess = addCardSuccess;
 exports.ADD_CARD_ERROR = ADD_CARD_ERROR;

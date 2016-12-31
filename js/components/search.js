@@ -2,10 +2,12 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const store = require('../store')
 const actions = require('../actions/index');
+const connect = require('react-redux').connect;
 
 const Input = require('./input');
 const Checkbox = require('./checkbox');
 const Button = require('./button');
+const AddCard = require('./add_card');
 
 class Search extends React.Component {
 
@@ -14,7 +16,6 @@ class Search extends React.Component {
 		console.log(store.getState());
 		store.dispatch(actions.colorsToString());
 		store.dispatch(actions.cardSearch(store.getState().filters));
-		console.log(store.getState())
 	}
 
 	nameFilter(e) {
@@ -44,10 +45,13 @@ class Search extends React.Component {
 	}
 
 	render() {
-		let searchResults = store.getState().cardSearchResults.map( (key) => {
-			let card = store.getState().cardSearchResults[key];
+
+		let searchResults = this.props.searchResults.map( (key) => {
 			return (
-				<img src={card.imageUrl}></img>
+				<li>
+					<img src={key.imageUrl}></img>
+					<AddCard card={key.name} />
+				</li>
 			)
 		})
 		return (
@@ -85,11 +89,19 @@ class Search extends React.Component {
 					<Button className="submitButton" type="submit" text="Submit" />
 				</form>
 				<ul>
-					{this.searchResults}
+					{searchResults}
 				</ul>
 			</div>
 		);
 	}
 }
 
-module.exports = Search;
+let mapStateToProps = (state, props) => {
+	return ({
+		searchResults: state.cardSearchResults
+	})
+}
+
+let Container = connect(mapStateToProps)(Search);
+
+module.exports = Container;

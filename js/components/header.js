@@ -21,7 +21,6 @@ class Header extends React.Component {
 	}
 
 	logout() {
-		// this.setState({authenticated: false});
 		this.props.dispatch(actions.logout());
 	}
 
