@@ -58,8 +58,8 @@ class Search extends React.Component {
 			<div id="searchDiv">
 				<h2>Card Search</h2>
 				<form onSubmit={this.submitHandler}>
-					<Input className="cardSearch" id="cardNameInput" placeholder="Card Name" onChange={this.nameFilter} />
-					<Input className="cardSearch" id="manaCostInput" placeholder="Mana Cost" onChange={this.cmcFilter} />
+					<Input className="cardSearch" id="cardNameInput" type="search" placeholder="Card Name" onChange={this.nameFilter} />
+					<Input className="cardSearch" id="manaCostInput" type="search" placeholder="Mana Cost" onChange={this.cmcFilter} />
 					<select id="typeSelector" onChange={this.typeFilter}>
 						<option>Card Type</option>
 						<option value="artifact">Artifact</option>

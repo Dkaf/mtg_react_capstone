@@ -6,22 +6,23 @@ const store = require('../store');
 const actions = require('../actions/index')
 const connect = require('react-redux').connect
 
+const Input = require('./input');
+
 class Header extends React.Component {
 	constructor() {
   		super();
-  		this.state = {
-			authenticated: false
-  		}
-  		this.login = this.login.bind(this);
-  		this.logout = this.logout.bind(this);
+	}
+
+	usernameHandler(e) {
+		store.dispatch(actions.loginUsername(e.target.value));
+	}
+
+	passwordHandler(e) {
+		store.dispatch(actions.loginPassword(e.target.value));
 	}
 
 	login() {
-		this.props.lock.show();
-	}
-
-	logout() {
-		this.props.dispatch(actions.logout());
+		store.dispatch(actions.getDecklist())
 	}
 
 	render() {
@@ -29,6 +30,9 @@ class Header extends React.Component {
 			<div id="headerDiv">
 				<img src="../css/banner.png" id="mainBanner"></img>
 				<div id="login"><a href="#" onClick={this.login} id="loginLink">Login</a></div>
+				<Input className="loginInput" placeholder="username" type="search" onChange={this.usernameHandler} />
+				<Input className="loginInput" placeholder="password" type="password" onChange={this.passwordHandler} />
+				<div id="signUp"><a href="#" id="signUpLink">Sign Up</a></div>
 			</div>
 		);
 	}

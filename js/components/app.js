@@ -3,7 +3,8 @@ const ReactDOM = require('react-dom');
 
 const Header = require('./header');
 const User = require('./user');
-const Auth0Vars = require('../auth0_vars')
+const AddUser = require('./add_user');
+const Auth0Vars = require('../auth0_vars');
 const actions = require('../actions/index');
 const store = require('../store')
 
@@ -25,6 +26,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<Header lock={this.lock} />
+				<AddUser />
 				<User />
 			</div>
 		);

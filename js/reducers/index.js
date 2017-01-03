@@ -1,7 +1,6 @@
 const Actions = require('../actions/index');
 
 let initialState = {
-	users: [],
 	deckList: [
 		{
 			deckName: '',
@@ -22,7 +21,20 @@ const mainReducer = (state = initialState ,action) => {
 
 		case Actions.LOGIN_SUCCESS:
 			return Object.assign({}, state, {
-				token: action.token
+				user: action.user
+			})
+
+		case Actions.LOGIN_ERROR:
+			console.log(action.error)
+
+		case Actions.LOGIN_USERNAME:
+			return Object.assign({}, state, {
+				user: action.username
+			})
+
+		case Actions.LOGIN_PASSWORD:
+			return Object.assign({}, state, {
+				password: action.password
 			})
 
 		case Actions.LOGOUT:
@@ -30,11 +42,28 @@ const mainReducer = (state = initialState ,action) => {
 				token: ''
 			})
 
+		case Actions.NEW_USERNAME:
+			return Object.assign({}, state, {
+				newUsername: action.username
+		 })
+
+		case Actions.NEW_PASSWORD:
+			return Object.assign({}, state, {
+				newPassword: action.password
+			})
+
+		case Actions.CONFIRMED_PASSWORD:
+			return Object.assign({}, state, {
+				confirmedPassword: action.password
+			})
+
 		case Actions.ADD_USER_SUCCESS:
 			return Object.assign({}, state, {
-				users: state.users.push(action.username),
-				password: action.password
+				user: action.username
 			})
+
+		case Actions.ADD_USER_ERROR:
+			console.log(action.error)
 
 		case Actions.REMOVE_USER_SUCCESS:
 			return Object.assign({}, state, {

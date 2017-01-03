@@ -4,10 +4,58 @@ const store = require('../store');
 
 //Login
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-const loginSuccess = (token) => {
+const loginSuccess = () => {
 	return {
-		type: LOGIN_SUCCESS,
-		token: token
+		type: LOGIN_SUCCESS
+	}
+}
+
+const LOGIN_ERROR = 'LOGIN_ERROR';
+const loginError = (error) => {
+	return {
+		type: LOGIN_ERROR,
+		error: error
+	}
+}
+
+const login = (username, password) => {
+	return (dispatch) => {
+		const request = new Request('https://still-island-83205.herokuapp.com/login', {
+			method: 'POST'
+
+		})
+		fetch(request)
+		.then( (response) => {
+			return response.json()
+		})
+		.then( (data) => {
+			return dispatch(
+				loginSuccess()
+			)
+		})
+		.catch( (err) => {
+			return dispatch(
+				loginError(err)
+			)
+		})
+	}
+}
+
+//put username into state
+const LOGIN_USERNAME = 'LOGIN_USERNAME';
+const loginUsername = (username) => {
+	return {
+		type: LOGIN_USERNAME,
+		username: username
+	}
+}
+
+//put password into state
+const LOGIN_PASSWORD = 'LOGIN_PASSWORD';
+const loginPassword = (password) => {
+	return {
+		type: LOGIN_PASSWORD,
+		password: password
 	}
 }
 
@@ -26,19 +74,46 @@ const logout = () => {
 	}
 }
 
+//New username into state
+const NEW_USERNAME = 'NEW_USERNAME';
+const newUsername = (username) => {
+	return {
+		type: NEW_USERNAME,
+		username: username
+	}
+}
+
+//New password into state
+const NEW_PASSWORD = 'NEW_PASSWORD';
+const newPassword = (password) => {
+	return {
+		type: NEW_PASSWORD,
+		password: password
+	}
+}
+
+//Confirmed password
+const CONFIRMED_PASSWORD = 'CONFIRMED_PASSWORD';
+const confirmedPassword = (password) => {
+	return {
+		type: CONFIRMED_PASSWORD,
+		password: password
+	}
+}
+
 //Add a user
 const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
-const addUserSuccess = (username, password) => {
+const addUserSuccess = (username) => {
 	return {
-		type: ADD_USER,
-		username: username,
-		password: password
+		type: ADD_USER_SUCCESS,
+		username: username
 	}
 }
 
 const ADD_USER_ERROR = 'ADD_USER_ERROR';
 const addUserError = (error) => {
 	return {
+		type: ADD_USER_ERROR,
 		error:error
 	}
 }
@@ -47,6 +122,9 @@ const addUser = (username, password) => {
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/users', {
 			method: 'POST',
+			headers: {
+				'Content-Type': 'Application/json'
+			},
 			body: JSON.stringify({
 				username: username,
 				password: password
@@ -57,7 +135,9 @@ const addUser = (username, password) => {
 			return response.json()
 		})
 		.then( (data) => {
-			return
+			return dispatch(
+				addUserSuccess(data.username)
+			)
 		})
 		.catch( (err) => {
 			return dispatch(
@@ -106,7 +186,7 @@ const getDecklistError = (error) => {
 	}
 };
 
-const getDecklist = () => {
+const getDecklist = (user) => {
 	return(dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/decks/', {
 			method: 'GET',
@@ -168,18 +248,19 @@ const addDeckError = (error) => {
 	}
 };
 
-const addDeck = (deckName, deckFormat, token) => {
+const addDeck = (deckName, deckFormat, user) => {
 	console.log(deckName, deckFormat);
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/', {
 			method: 'POST',
 			headers: {
-				'Authorization': 'Bearer' + token,
+				'Authorization': 'Basic' + btoa('Dkaf:test'),
 				'Content-Type': 'Application/json'
 			},
 			body: JSON.stringify({
 				name: deckName,
-				format: deckFormat
+				format: deckFormat,
+				user: user
 			})
 		});
 		fetch(request)
@@ -273,7 +354,7 @@ const addCard = (deckName, cards) => {
 	console.log(deckName)
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/' + deckName, {
-			method: 'UPDATE',
+			method: 'PUT',
 			headers: {
 				'Content-Type': 'Application/json'
 			},
@@ -484,8 +565,21 @@ const colorsToString = () => {
 
 exports.LOGIN_SUCCESS = LOGIN_SUCCESS;
 exports.loginSuccess = loginSuccess;
+exports.LOGIN_ERROR = LOGIN_ERROR;
+exports.loginError = loginError;
+exports.login = login;
+exports.LOGIN_USERNAME = LOGIN_USERNAME;
+exports.loginUsername = loginUsername;
+exports.LOGIN_PASSWORD = LOGIN_PASSWORD;
+exports.loginPassword = loginPassword;
 exports.LOGOUT = LOGOUT;
 exports.logout = logout;
+exports.NEW_USERNAME = NEW_USERNAME;
+exports.newUsername = newUsername;
+exports.NEW_PASSWORD = NEW_PASSWORD;
+exports.newPassword = newPassword;
+exports.CONFIRMED_PASSWORD = CONFIRMED_PASSWORD;
+exports.confirmedPassword = confirmedPassword;
 exports.ADD_USER_SUCCESS = ADD_USER_SUCCESS;
 exports.addUserSuccess = addUserSuccess;
 exports.ADD_USER_ERROR = ADD_USER_ERROR;
