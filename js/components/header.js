@@ -22,7 +22,10 @@ class Header extends React.Component {
 	}
 
 	login() {
-		store.dispatch(actions.getDecklist())
+		store.dispatch(actions.login(store.getState().user, store.getState().password));
+		if(store.getState().isLoggedIn) {
+			store.dispatch(actions.getDecklist(store.getState().user));
+		}
 	}
 
 	render() {
@@ -30,8 +33,10 @@ class Header extends React.Component {
 			<div id="headerDiv">
 				<img src="../css/banner.png" id="mainBanner"></img>
 				<div id="login"><a href="#" onClick={this.login} id="loginLink">Login</a></div>
-				<Input className="loginInput" placeholder="username" type="search" onChange={this.usernameHandler} />
-				<Input className="loginInput" placeholder="password" type="password" onChange={this.passwordHandler} />
+				<form onSubmit={this.login}>
+					<Input className="loginInput" placeholder="username" type="search" onChange={this.usernameHandler} />
+					<Input className="loginInput" placeholder="password" type="password" onChange={this.passwordHandler} />
+				</form>
 				<div id="signUp"><a href="#" id="signUpLink">Sign Up</a></div>
 			</div>
 		);

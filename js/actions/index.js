@@ -4,7 +4,7 @@ const store = require('../store');
 
 //Login
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-const loginSuccess = () => {
+const loginSuccess = (username, password) => {
 	return {
 		type: LOGIN_SUCCESS
 	}
@@ -20,8 +20,12 @@ const loginError = (error) => {
 
 const login = (username, password) => {
 	return (dispatch) => {
-		const request = new Request('https://still-island-83205.herokuapp.com/login', {
-			method: 'POST'
+		const request = new Request('https://still-island-83205.herokuapp.com/login/' + username, {
+			method: 'GET',
+			headers: {
+				'Authorization': 'Basic ' + btoa(username + ':' + password),
+				'Content-Type': 'Application/json'
+			}
 
 		})
 		fetch(request)
@@ -30,7 +34,8 @@ const login = (username, password) => {
 		})
 		.then( (data) => {
 			return dispatch(
-				loginSuccess()
+				loginSuccess(data.username, password),
+				getDecklist(data.username)
 			)
 		})
 		.catch( (err) => {
@@ -188,7 +193,7 @@ const getDecklistError = (error) => {
 
 const getDecklist = (user) => {
 	return(dispatch) => {
-		const request = new Request('https://still-island-83205.herokuapp.com/decks/', {
+		const request = new Request('https://still-island-83205.herokuapp.com/decks/' + user, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'Application/json'
@@ -254,7 +259,7 @@ const addDeck = (deckName, deckFormat, user) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/', {
 			method: 'POST',
 			headers: {
-				'Authorization': 'Basic' + btoa('Dkaf:test'),
+				'Authorization': 'Basic ' + btoa('Dkaf:test'),
 				'Content-Type': 'Application/json'
 			},
 			body: JSON.stringify({

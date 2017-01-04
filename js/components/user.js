@@ -8,10 +8,6 @@ const AddDeck = require('./add_deck');
 const Search = require('./search');
 
 class User extends React.Component {
-	
-	componentWillMount() {
-		store.dispatch(actions.getDecklist());
-	}
 
 	render() {
 		return (

@@ -16,6 +16,7 @@ class Search extends React.Component {
 		console.log(store.getState());
 		store.dispatch(actions.colorsToString());
 		store.dispatch(actions.cardSearch(store.getState().filters));
+		e.reset();
 	}
 
 	nameFilter(e) {

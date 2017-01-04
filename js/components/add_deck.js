@@ -19,6 +19,7 @@ class AddDeck extends React.Component {
 		e.preventDefault();
 		console.log(store.getState())
 		this.props.dispatch(Actions.addDeck(store.getState().deckName, store.getState().deckFormat, store.getState().user))
+		e.target.reset();
 	}
 
 	nameInputHandler(e) {

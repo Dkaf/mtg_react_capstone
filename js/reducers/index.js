@@ -21,7 +21,9 @@ const mainReducer = (state = initialState ,action) => {
 
 		case Actions.LOGIN_SUCCESS:
 			return Object.assign({}, state, {
-				user: action.user
+				user: action.username,
+				password: action.password,
+				isLoggedIn: true
 			})
 
 		case Actions.LOGIN_ERROR:
