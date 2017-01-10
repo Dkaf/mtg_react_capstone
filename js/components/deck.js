@@ -14,15 +14,16 @@ class Deck extends React.Component {
 
 	clickHandler() {
 		store.dispatch(actions.selectDeck(this.props.deckName));
+		console.log(store.getState())
 	}
 
 	render() {
 		return (
 			<div>
 				<h3 className="deckName" onClick={this.clickHandler}>{this.props.deckName}</h3>
-				<RemoveDeck deckName={this.props.deckName} />
-				<span className="deckFormat">{this.props.deckFormat}</span>
+				<span className="deckFormat">Format: {this.props.deckFormat}</span>
 				<ul className="cardList" >{this.props.cards}</ul>
+				<RemoveDeck deckName={this.props.deckName} />
 			</div>
 		);
 	}

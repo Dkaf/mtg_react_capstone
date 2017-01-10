@@ -6,7 +6,9 @@ const store = require('../store');
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const loginSuccess = (username, password) => {
 	return {
-		type: LOGIN_SUCCESS
+		type: LOGIN_SUCCESS,
+		username: username,
+		password: password
 	}
 }
 
@@ -20,12 +22,13 @@ const loginError = (error) => {
 
 const login = (username, password) => {
 	return (dispatch) => {
-		const request = new Request('https://still-island-83205.herokuapp.com/login/' + username, {
-			method: 'GET',
+		const request = new Request('https://still-island-83205.herokuapp.com/login', {
+			method: 'POST',
 			headers: {
 				'Authorization': 'Basic ' + btoa(username + ':' + password),
 				'Content-Type': 'Application/json'
-			}
+			},
+			body: {}
 
 		})
 		fetch(request)
@@ -34,9 +37,8 @@ const login = (username, password) => {
 		})
 		.then( (data) => {
 			return dispatch(
-				loginSuccess(data.username, password),
-				getDecklist(data.username)
-			)
+				loginSuccess(username, password)
+			), dispatch(getDecklist(username))
 		})
 		.catch( (err) => {
 			return dispatch(
@@ -253,13 +255,13 @@ const addDeckError = (error) => {
 	}
 };
 
-const addDeck = (deckName, deckFormat, user) => {
+const addDeck = (deckName, deckFormat, user, password) => {
 	console.log(deckName, deckFormat);
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/', {
 			method: 'POST',
 			headers: {
-				'Authorization': 'Basic ' + btoa('Dkaf:test'),
+				'Authorization': 'Basic ' + btoa(user + ':' + password),
 				'Content-Type': 'Application/json'
 			},
 			body: JSON.stringify({
@@ -337,6 +339,16 @@ const selectDeck = (deckName) => {
 	}
 }
 
+//Update decklist before updating in database
+const UPDATE_DECKLIST = 'UPDATE_DECKLIST';
+const updateDecklist = (deck, card) => {
+	return {
+		type: UPDATE_DECKLIST,
+		deck: deck,
+		card: card
+	}
+}
+
 //Add card to deck
 const ADD_CARD_SUCCESS = 'ADD_CARD_SUCCESS';
 const addCardSuccess = (deckName, card) => {
@@ -355,12 +367,13 @@ const addCardError = (error) => {
 	}
 };
 
-const addCard = (deckName, cards) => {
+const addCard = (deckName, cards, user, password) => {
 	console.log(deckName)
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/' + deckName, {
 			method: 'PUT',
 			headers: {
+				'Authorization': 'Basic ' + btoa(user + ':' + password),
 				'Content-Type': 'Application/json'
 			},
 			body: JSON.stringify({
@@ -484,6 +497,9 @@ const cardSearchError = (error) => {
 
 const cardSearch = (filters) => {
 	return(dispatch) => {
+		if(filters.colors) {
+			filters.colors = filters.colors.toString();
+		}
 		console.log(filters);
 		let query = '';
 		Object.keys(filters).forEach((key) => {query = query + (query.length==0?'?':'&') + key + '=' + filters[key]})

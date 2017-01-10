@@ -1,6 +1,7 @@
 const Actions = require('../actions/index');
 
 let initialState = {
+	isLoggedIn: false,
 	deckList: [
 		{
 			deckName: '',
@@ -11,7 +12,8 @@ let initialState = {
 	filters: {
 		colors: []
 	},
-	cardSearchResults: []
+	cardSearchResults: [],
+	selectedDeck: {deckName:''}
 };
 
 
@@ -41,7 +43,9 @@ const mainReducer = (state = initialState ,action) => {
 
 		case Actions.LOGOUT:
 			return Object.assign({}, state, {
-				token: ''
+				user: '',
+				password: '',
+				isLoggedIn: false
 			})
 
 		case Actions.NEW_USERNAME:
@@ -104,18 +108,20 @@ const mainReducer = (state = initialState ,action) => {
 
 		case Actions.SELECT_DECK:
 			return Object.assign({}, state, {
-				selectedDeck: action.deckName
+				selectedDeck: state.deckList.find( (deck) => {
+					return deck.deckName == action.deckName
+				})
+			})
+
+		case Actions.UPDATE_DECKLIST:
+			return Object.assign({}, state, {
+				deckList: action.deck.cardList.concat(action.card)
 			})
 
 		case Actions.ADD_CARD_SUCCESS:
-			let deck = state.deckList.find( (deck) => {
-				return deck.deckName == action.deckName
-			})
-			deck.cardList.concat(action.card)
 			return Object.assign({}, state, {
-				deckList: state.deckList
-			})
 
+			})
 		case Actions.ADD_CARD_ERROR:
 			console.log(action.error)
 
@@ -157,13 +163,6 @@ const mainReducer = (state = initialState ,action) => {
 			return Object.assign({}, state, {
 				filters: {colors: state.filters.colors}
 			})
-
-		case Actions.COLORS_TO_STRING:
-			if(state.filters.hasOwnProperty('colors')) {
-				return Object.assign({}, state, {
-					filters: {colors: state.filters.colors.toString()}
-				})
-			}
 
 
 		case Actions.DECK_NAME:

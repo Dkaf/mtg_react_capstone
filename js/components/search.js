@@ -14,9 +14,8 @@ class Search extends React.Component {
 	submitHandler(e) {
 		e.preventDefault();
 		console.log(store.getState());
-		store.dispatch(actions.colorsToString());
 		store.dispatch(actions.cardSearch(store.getState().filters));
-		e.reset();
+		e.target.reset();
 	}
 
 	nameFilter(e) {
@@ -48,10 +47,11 @@ class Search extends React.Component {
 	render() {
 
 		let searchResults = this.props.searchResults.map( (key) => {
+			console.log(key);
 			return (
 				<li>
 					<img src={key.imageUrl}></img>
-					<AddCard card={key.name} />
+					<AddCard card={key} />
 				</li>
 			)
 		})

@@ -9,29 +9,34 @@ class DeckList extends React.Component {
 	constructor(props) {
 		super(props);
 	}
-	render() {
-		let decks = this.props.decks.map( (deck)=> {
-			return (
-				<Deck deckName={deck.name} deckFormat={deck.format} cards={deck.cards}/>
-			)
-		});
+		render() {
+			if(this.props.isLoggedIn) {
+				let decks = this.props.decks.map( (deck)=> {
+					return (
+						<Deck deckName={deck.name} deckFormat={deck.format} cards={deck.cards}/>
+					)
+				});
 
-		return (
-			<div>
-				<h2>Deck List</h2>
-				<h3>Selected Deck: {this.props.selectedDeck}</h3>
-				<ul>
-					{decks}
-				</ul>
-			</div>
-		);
+				return (
+					<div id="deckListDiv">
+						<h2>Deck List</h2>
+						<h3>Selected Deck: {this.props.selectedDeck}</h3>
+						<ul>
+							{decks}
+						</ul>
+					</div>
+				);
+		} else {
+			return null
+		}
 	}
 };
 
 let mapStateToProps = (state, props) => {
 	return {
 		decks: state.deckList,
-		selectedDeck: state.selectedDeck
+		selectedDeck: state.selectedDeck.deckName,
+		isLoggedIn: state.isLoggedIn
 	}
 };
 

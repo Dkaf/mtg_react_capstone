@@ -7,10 +7,12 @@ const actions = require('../actions/index')
 const connect = require('react-redux').connect
 
 const Input = require('./input');
+const Greeting = require('./greeting')
 
 class Header extends React.Component {
-	constructor() {
-  		super();
+	constructor(props) {
+  		super(props);
+		this.login = this.login.bind(this);
 	}
 
 	usernameHandler(e) {
@@ -23,26 +25,28 @@ class Header extends React.Component {
 
 	login() {
 		store.dispatch(actions.login(store.getState().user, store.getState().password));
-		if(store.getState().isLoggedIn) {
-			store.dispatch(actions.getDecklist(store.getState().user));
-		}
+		console.log(store.getState())
 	}
 
 	render() {
 		return (
 			<div id="headerDiv">
-				<img src="../css/banner.png" id="mainBanner"></img>
-				<div id="login"><a href="#" onClick={this.login} id="loginLink">Login</a></div>
-				<form onSubmit={this.login}>
-					<Input className="loginInput" placeholder="username" type="search" onChange={this.usernameHandler} />
-					<Input className="loginInput" placeholder="password" type="password" onChange={this.passwordHandler} />
-				</form>
-				<div id="signUp"><a href="#" id="signUpLink">Sign Up</a></div>
+				<img id="mainBanner" src='../css/banner.png'></img>
+				<Greeting onSubmit={this.login} usernameChange={this.usernameHandler}
+						  passwordChange={this.passwordHandler} onClick={this.login} />
 			</div>
 		);
 	}
 }
 
-const Container = connect()(Header)
+let mapStateToProps = (state, props) => {
+	return {
+		isLoggedIn: state.isLoggedIn,
+		user: state.user
+	}
+}
 
-module.exports = Header;
+const Container = connect(mapStateToProps)(Header)
+
+
+module.exports = Container;

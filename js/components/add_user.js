@@ -2,6 +2,7 @@ const React = require('react');
 const ReactDOM = require('react-dom');
 const store = require('../store');
 const actions = require('../actions/index')
+const connect = require('react-redux').connect
 
 const Input = require('./input');
 const Button = require('./button')
@@ -36,19 +37,30 @@ class AddUser extends React.Component {
 	}
 
 	render() {
-		return (
-			<div>
-				<h2>Enter a username and Password</h2>
-				<form onSubmit={this.submitHandler}>
-					<Input className="addUserInput" placeholder="username" type="search" onChange={this.newUsername} />
-					<Input className="addUserInput" placeholder="password" type="password" onChange={this.newPassword} />
-					<Input className="addUserInput" placeholder="confirm password" type="password" onChange={this.confirmPassword} />
-					<Button type="submit" text="submit" />
-				</form>
-			</div>
-		);
+		if(!this.props.isLoggedIn){
+			return (
+				<div id="signUpDiv">
+					<h2 id="signUpTitle">Sign Up!</h2>
+					<form id="signUpForm" onSubmit={this.submitHandler}>
+						<Input className="addUserInput" placeholder="username" type="search" onChange={this.newUsername} />
+						<Input className="addUserInput" placeholder="password" type="password" onChange={this.newPassword} />
+						<Input className="addUserInput" placeholder="confirm password" type="password" onChange={this.confirmPassword} />
+						<Button type="submit" text="submit" />
+					</form>
+				</div>
+			);
+		} else {
+			return null
+		}
 	}
 }
 
+let mapStateToProps = (state, props) => {
+	return {
+		isLoggedIn: state.isLoggedIn
+	}
+};
 
-module.exports = AddUser;
+const Container = connect(mapStateToProps)(AddUser);
+
+module.exports = Container;

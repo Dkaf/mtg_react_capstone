@@ -18,7 +18,7 @@ class AddDeck extends React.Component {
 	submitHandler(e) {
 		e.preventDefault();
 		console.log(store.getState())
-		this.props.dispatch(Actions.addDeck(store.getState().deckName, store.getState().deckFormat, store.getState().user))
+		this.props.dispatch(Actions.addDeck(store.getState().deckName, store.getState().deckFormat, store.getState().user, store.getState().password))
 		e.target.reset();
 	}
 
@@ -31,21 +31,31 @@ class AddDeck extends React.Component {
 	}
 
 	//Input handler
-
-	render() {
-		return (
-			<div>
-				<h2>Name your new deck</h2>
-				<form onSubmit={this.submitHandler}>
-					<Input className="deckInput" id="deckName" onChange={this.nameInputHandler} placeholder="Name" />
-					<Input className="deckInput" id="deckFormat" onChange={this.formatInputHandler} placeholder="Format" />
-					<Button className="addDeck" type="submit" text="Add" />
-				</form>
-			</div>
-		);
+		render() {
+			if (this.props.isLoggedIn){
+			return (
+				<div id="addDeckDiv">
+					<h2>Name your new deck</h2>
+					<form onSubmit={this.submitHandler}>
+						<Input className="deckInput" id="deckName" onChange={this.nameInputHandler} placeholder="Name" />
+						<Input className="deckInput" id="deckFormat" onChange={this.formatInputHandler} placeholder="Format" />
+						<Button className="addDeck" type="submit" text="Add" />
+					</form>
+				</div>
+			);
+		}
+		else {
+			return null
+		}
 	}
 };
 
-const Container = connect()(AddDeck);
+let mapStateToProps = (state, props) => {
+	return {
+		isLoggedIn: state.isLoggedIn
+	}
+};
+
+const Container = connect(mapStateToProps)(AddDeck);
 
 module.exports = Container;

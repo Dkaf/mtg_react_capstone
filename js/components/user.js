@@ -11,10 +11,9 @@ class User extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div id="userDiv">
 				<DeckList />
 				<AddDeck />
-				<Search />
 			</div>
 		);
 	}

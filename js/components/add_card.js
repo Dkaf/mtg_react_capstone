@@ -13,8 +13,15 @@ class AddCard extends React.Component {
 
 	clickHandler(e) {
 		e.preventDefault();
-		store.dispatch(actions.addCard(store.getState().selectedDeck, this.props.card))
-		console.log(store.getState())
+		if(!store.getState().isLoggedIn){
+			alert('Please login or sign up to add cards');
+		} else if(!store.getState().selectedDeck) {
+			alert('Please select a deck to add cards');
+		} else {
+			store.dispatch(actions.updateDecklist(store.getState().selectedDeck, this.props.card))
+			store.dispatch(actions.addCard(store.getState().selectedDeck.deckName, store.getState().selectedDeck.cardList, store.getState().user, store.getState().password))
+			console.log(store.getState())
+		}
 	}
 
 	render() {
