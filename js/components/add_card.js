@@ -4,6 +4,7 @@ const ReactDOM = require('react-dom');
 const store = require('../store');
 const actions = require('../actions/index');
 const Button = require('./button');
+const connect = require('react-redux').connect;
 
 class AddCard extends React.Component {
 	constructor(props) {
@@ -18,8 +19,9 @@ class AddCard extends React.Component {
 		} else if(!store.getState().selectedDeck) {
 			alert('Please select a deck to add cards');
 		} else {
-			store.dispatch(actions.updateDecklist(store.getState().selectedDeck, this.props.card))
-			store.dispatch(actions.addCard(store.getState().selectedDeck.deckName, store.getState().selectedDeck.cardList, store.getState().user, store.getState().password))
+			Promise.resolve(store.dispatch(actions.updateDecklist(this.props.card))).then( () => {
+				return store.dispatch(actions.addCard(this.props.selectedDeck.name, this.props.selectedDeck.cards, this.props.user, this.props.password))
+			})
 			console.log(store.getState())
 		}
 	}
@@ -31,4 +33,14 @@ class AddCard extends React.Component {
 	}
 }
 
-module.exports = AddCard;
+let mapStateToProps = (state, props) => {
+	return {
+		selectedDeck: state.selectedDeck,
+		user: state.user,
+		password: state.password
+	}
+}
+
+let Container = connect(mapStateToProps)(AddCard)
+
+module.exports = Container;

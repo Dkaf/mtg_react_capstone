@@ -1,30 +1,44 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 
+const store = require('../store');
+const actions = require('../actions/index');
+const connect = require('react-redux').connect;
+
 class Card extends React.Component {
+	constructor(props) {
+		super(props)
+		this.removeCard = this.removeCard.bind(this);
+	}
+
+	removeCard(e) {
+		e.preventDefault();
+		store.dispatch(actions.updateDeck(this.props.deck))
+		store.dispatch(actions.removeCard(this.props.editedDeck.name, this.props.editedDeck.cards, this.props.user, this.props.password))
+	}
+
+
 	render() {
 		return (
 			<div>
 				<ul>
 					<li className="cardName">{this.props.name}</li>
-					<li className="cardManacost">{this.props.name}</li>
-					<li className="cardCmc">{this.props.cmc}</li>
-					<li className="cardColors">{this.props.colors}</li>
-					<li className="cardType">{this.props.type}</li>
-					<li className="cardSupertypes">{this.props.supertypes}</li>
-					<li className="cardSubtypes">{this.props.subtypes}</li>
-					<li className="cardRarity">{this.props.rarity}</li>
-					<li className="cardSet">{this.props.set}</li>
-					<li className="cardText">{this.props.text}</li>
-					<li className="cardArtist">{this.props.artist}</li>
-					<li className="cardPower">{this.props.power}</li>
-					<li className="cardToughness">{this.props.toughness}</li>
-					<li className="cardImage">{this.props.imageUrl}</li>
-					<li className="cardRulings">{this.props.rulings}</li>
+					<li className="cardType" hidden="true">{this.props.type}</li>
 				</ul>
+				<img className="cardImage" src={this.props.imageUrl}></img>
+				<a href="#">Remove</a>
 			</div>
 		)
 	}
 };
+
+var mapStateToProps = (state, props) => {
+	return {
+		user: state.user,
+		password: state.password,
+		deckList: state.deckList,
+		editedDeck: state.editedDeck
+	}
+}
 
 module.exports = Card;

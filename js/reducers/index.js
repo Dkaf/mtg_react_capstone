@@ -6,7 +6,7 @@ let initialState = {
 		{
 			deckName: '',
 			format: '',
-			cardList:[]
+			cards:[]
 		}
 	],
 	filters: {
@@ -109,27 +109,27 @@ const mainReducer = (state = initialState ,action) => {
 		case Actions.SELECT_DECK:
 			return Object.assign({}, state, {
 				selectedDeck: state.deckList.find( (deck) => {
-					return deck.deckName == action.deckName
+					return deck.name == action.deckName
 				})
 			})
 
 		case Actions.UPDATE_DECKLIST:
 			return Object.assign({}, state, {
-				deckList: action.deck.cardList.concat(action.card)
+				selectedDeck: {name: state.selectedDeck.name, cards: state.selectedDeck.cards.concat(action.card)}
 			})
 
 		case Actions.ADD_CARD_SUCCESS:
-			return Object.assign({}, state, {
+			console.log(action.deckName)
+			console.log(action.card)
 
-			})
 		case Actions.ADD_CARD_ERROR:
 			console.log(action.error)
 
-		case Actions.REMOVE_CARD_SUCCESS:
-			//Find deck
-			let cardIndex = state.deckList[deckIndex].indexOf(action.card)
+		case Actions.UPDATE_DECK:
 			return Object.assign({}, state, {
-				deckList: state.deckList[deckIndex].splice(cardIndex, 1)
+				editedDeck: {name:action.deckName, cards: state.deckList.find( (deck) =>{
+					return deck.name == action.deckName
+				}).cards}
 			})
 
 		case Actions.NAME_FILTER:

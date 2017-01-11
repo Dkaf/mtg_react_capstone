@@ -206,7 +206,6 @@ const getDecklist = (user) => {
 			return response.json()
 		})
 		.then( (data) => {
-			console.log(data)
 			return dispatch(
 				getDecklistSuccess(data.decks)
 			)
@@ -341,10 +340,9 @@ const selectDeck = (deckName) => {
 
 //Update decklist before updating in database
 const UPDATE_DECKLIST = 'UPDATE_DECKLIST';
-const updateDecklist = (deck, card) => {
+const updateDecklist = (card) => {
 	return {
 		type: UPDATE_DECKLIST,
-		deck: deck,
 		card: card
 	}
 }
@@ -369,6 +367,7 @@ const addCardError = (error) => {
 
 const addCard = (deckName, cards, user, password) => {
 	console.log(deckName)
+	console.log(cards)
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/' + deckName, {
 			method: 'PUT',
@@ -386,7 +385,8 @@ const addCard = (deckName, cards, user, password) => {
 		})
 		.then( (data) => {
 			return dispatch(
-				addCardSuccess(data.name, data.cards)
+				addCardSuccess(data.deck.name, data.deck.cards),
+				getDecklist(user)
 			)
 		})
 		.catch( (err) => {
@@ -397,11 +397,21 @@ const addCard = (deckName, cards, user, password) => {
 	}
 };
 
+//Update decklist with removed card
+const UPDATE_DECK = 'UPDATE_DECK';
+const updateDeck = (deckName) => {
+	return {
+		type: UPDATE_DECK,
+		deckName: deckName
+	}
+}
+
 //Remove card from deck
 const REMOVE_CARD_SUCCESS = 'REMOVE_CARD_SUCCESS';
-const removeCardSuccess = (card) => {
+const removeCardSuccess = (deckName, card) => {
 	return {
 		type: REMOVE_CARD,
+		deckName: deckName,
 		card: card
 	}
 };
@@ -413,12 +423,16 @@ const removeCardError = (error) => {
 	}
 };
 
-const removeCard = (deckName, card) => {
+const removeCard = (deckName, cards, user, password) => {
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/' + deckName, {
-			method: 'UPDATE',
+			method: 'PUT',
+			headers: {
+				'Authorization': 'Basic ' + btoa(user + ':' + password),
+				'Content-Type': 'Application/json'
+			},
 			body: JSON.stringify({
-				cards: card
+				cards: cards
 			})
 		});
 		fetch(request)
@@ -427,7 +441,8 @@ const removeCard = (deckName, card) => {
 		})
 		.then( (data) => {
 			return dispatch(
-				removeCardSuccess(data.deckName, data.cards)
+				removeCardSuccess(data.deck.name, data.deck.cards),
+				getDecklist(user)
 			)
 		})
 		.catch( (err) => {
@@ -632,6 +647,8 @@ exports.removeDeckError = removeDeckError;
 exports.removeDeck = removeDeck;
 exports.SELECT_DECK = SELECT_DECK;
 exports.selectDeck = selectDeck;
+exports.UPDATE_DECKLIST = UPDATE_DECKLIST;
+exports.updateDecklist = updateDecklist;
 exports.ADD_CARD_SUCCESS = ADD_CARD_SUCCESS;
 exports.addCardSuccess = addCardSuccess;
 exports.ADD_CARD_ERROR = ADD_CARD_ERROR;
