@@ -399,10 +399,12 @@ const addCard = (deckName, cards, user, password) => {
 
 //Update decklist with removed card
 const UPDATE_DECK = 'UPDATE_DECK';
-const updateDeck = (deckName) => {
+const updateDeck = (deckName, cards, cardToRemove) => {
 	return {
 		type: UPDATE_DECK,
-		deckName: deckName
+		deckName: deckName,
+		cards: cards,
+		cardToRemove: cardToRemove
 	}
 }
 
@@ -654,6 +656,8 @@ exports.addCardSuccess = addCardSuccess;
 exports.ADD_CARD_ERROR = ADD_CARD_ERROR;
 exports.addCardError = addCardError;
 exports.addCard = addCard;
+exports.UPDATE_DECK = UPDATE_DECK;
+exports.updateDeck = updateDeck;
 exports.REMOVE_CARD_SUCCESS = REMOVE_CARD_SUCCESS;
 exports.removeCardSuccess = removeCardSuccess;
 exports.REMOVE_CARD_ERROR = REMOVE_CARD_ERROR;

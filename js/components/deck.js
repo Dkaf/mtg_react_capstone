@@ -31,7 +31,7 @@ class Deck extends React.Component {
 		})
 		let cards = this.props.cards.map( (card) => {
 			return(
-				<Card name={card.name} deck={this.props.deckName} imageUrl={card.imageUrl} />
+				<Card name={card.name} deck={this.props.deckName} cards={this.props.cards} imageUrl={card.imageUrl} />
 			);
 		});
 		return (

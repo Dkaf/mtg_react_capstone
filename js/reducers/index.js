@@ -127,9 +127,7 @@ const mainReducer = (state = initialState ,action) => {
 
 		case Actions.UPDATE_DECK:
 			return Object.assign({}, state, {
-				editedDeck: {name:action.deckName, cards: state.deckList.find( (deck) =>{
-					return deck.name == action.deckName
-				}).cards}
+				editedDeck: {name:action.deckName, cards: action.cards.splice(action.cards.indexOf(action.cardToRemove, 1))}
 			})
 
 		case Actions.NAME_FILTER:

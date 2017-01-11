@@ -13,8 +13,9 @@ class Card extends React.Component {
 
 	removeCard(e) {
 		e.preventDefault();
-		store.dispatch(actions.updateDeck(this.props.deck))
-		store.dispatch(actions.removeCard(this.props.editedDeck.name, this.props.editedDeck.cards, this.props.user, this.props.password))
+		Promise.resolve(store.dispatch(actions.updateDeck(this.props.deck, this.props.cards, this.props.name))).then( () => {
+			return store.dispatch(actions.removeCard(this.props.editedDeck.name, this.props.editedDeck.cards, this.props.user, this.props.password))
+		})
 	}
 
 
@@ -26,7 +27,7 @@ class Card extends React.Component {
 					<li className="cardType" hidden="true">{this.props.type}</li>
 				</ul>
 				<img className="cardImage" src={this.props.imageUrl}></img>
-				<a href="#">Remove</a>
+				<a href="#" onClick={this.removeCard}>Remove</a>
 			</div>
 		)
 	}
