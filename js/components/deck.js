@@ -31,16 +31,16 @@ class Deck extends React.Component {
 		})
 		let cards = this.props.cards.map( (card) => {
 			return(
-				<Card name={card.name} deck={this.props.deckName} cards={this.props.cards} imageUrl={card.imageUrl} />
+				<Card name={card.name} deck={this.props.deckName} fullCardlist={this.props.fullCardlist} imageUrl={card.imageUrl} />
 			);
 		});
 		return (
-			<div>
+			<div className="deck">
 				<h3 className="deckName" onClick={this.clickHandler}>{this.props.deckName}</h3>
 				<span className="deckFormat">Format: {this.props.deckFormat}</span>
 				<span id="averageCmc">Average Cmc: {averageCmc}</span>
 				<ul className="cardList" >{cards}</ul>
-				<RemoveDeck deckName={this.props.deckName} />
+				<RemoveDeck className="removeDeckButton" deckName={this.props.deckName} />
 			</div>
 		);
 	}

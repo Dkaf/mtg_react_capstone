@@ -22,7 +22,7 @@ class DeckList extends React.Component {
 						return 0
 					})
 					return (
-						<Deck deckName={deck.name} deckFormat={deck.format} cards={sortedCards}/>
+						<Deck deckName={deck.name} deckFormat={deck.format} fullCardlist={sortedCards} cards={sortedCards}/>
 					)
 				});
 

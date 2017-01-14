@@ -9,7 +9,7 @@ body {
 	margin: 0;
 	color: rgb(60, 95, 94);
 	width: 100%;
-	height: 100%
+	height: 100%;
 }
 
 a {
@@ -40,12 +40,13 @@ button {
 	left: 0;
 	top: 0;
 	margin: 0;
+	overflow-x: hidden;
 }
 
 #loginForm {
-	position: absolute;
-	top: 9%;
-	left: 80%;
+	position: absolute;;
+	top: 15%;
+	left: 65%;
 	font-size: 1.30em;
 }
 
@@ -83,8 +84,10 @@ button {
 
 /*Deck List Styling*/
 
+.deck {
+}
+
 #userDiv {
-	display: inline;
 }
 
 .deckName {
@@ -96,6 +99,7 @@ button {
 }
 
 #deckListDiv {
+	display: block;
 }
 
 #addDeckDiv {
@@ -105,6 +109,12 @@ button {
 	display: block;
 }
 
+/*Card List Stylings*/
+.cardImage {
+}
+
+.cardName:hover + .cardImage {
+}
 
 /*Card Search Stylings*/
 #searchDiv {

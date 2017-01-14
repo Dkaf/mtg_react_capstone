@@ -13,7 +13,7 @@ class Card extends React.Component {
 
 	removeCard(e) {
 		e.preventDefault();
-		Promise.resolve(store.dispatch(actions.updateDeck(this.props.deck, this.props.cards, this.props.name))).then( () => {
+		Promise.resolve(store.dispatch(actions.updateDeck(this.props.deck, this.props.fullCardlist, this.props.name))).then( () => {
 			return store.dispatch(actions.removeCard(this.props.editedDeck.name, this.props.editedDeck.cards, this.props.user, this.props.password))
 		})
 	}
@@ -21,7 +21,7 @@ class Card extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="card">
 				<ul>
 					<li className="cardName">{this.props.name}</li>
 					<li className="cardType" hidden="true">{this.props.type}</li>
@@ -33,7 +33,7 @@ class Card extends React.Component {
 	}
 };
 
-var mapStateToProps = (state, props) => {
+let mapStateToProps = (state, props) => {
 	return {
 		user: state.user,
 		password: state.password,
@@ -42,4 +42,6 @@ var mapStateToProps = (state, props) => {
 	}
 }
 
-module.exports = Card;
+let Container = connect(mapStateToProps)(Card);
+
+module.exports = Container;

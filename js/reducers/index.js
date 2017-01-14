@@ -119,16 +119,36 @@ const mainReducer = (state = initialState ,action) => {
 			})
 
 		case Actions.ADD_CARD_SUCCESS:
-			console.log(action.deckName)
-			console.log(action.card)
+			let deck = state.deckList.find( (deck) => {
+				return deck.name == action.deckName
+			});
+			deck.cards = action.cards
+			return Object.assign({}, state, {
+				deckList: state.deckList
+			})
 
 		case Actions.ADD_CARD_ERROR:
 			console.log(action.error)
 
 		case Actions.UPDATE_DECK:
 			return Object.assign({}, state, {
-				editedDeck: {name:action.deckName, cards: action.cards.splice(action.cards.indexOf(action.cardToRemove, 1))}
+				editedDeck: {name:action.deckName, cards: action.cards.filter( (card) => {
+						return card.name != action.cardToRemove
+				})}
 			})
+
+		case Actions.REMOVE_CARD_SUCCESS:
+			deck = state.deckList.find( (deck) => {
+				return deck.name == action.deckName
+			});
+			deck.cards = action.cards
+			return Object.assign({}, state, {
+				deckList: state.deckList
+			})
+
+		case Actions.REMOVE_CARD_ERROR:
+			console.log(action.error)
+
 
 		case Actions.NAME_FILTER:
 			console.log(state.filters);

@@ -349,11 +349,11 @@ const updateDecklist = (card) => {
 
 //Add card to deck
 const ADD_CARD_SUCCESS = 'ADD_CARD_SUCCESS';
-const addCardSuccess = (deckName, card) => {
+const addCardSuccess = (deckName, cards) => {
 	return {
 		type: ADD_CARD_SUCCESS,
 		deckName: deckName,
-		card: card
+		cards: cards
 	}
 };
 
@@ -385,7 +385,7 @@ const addCard = (deckName, cards, user, password) => {
 		})
 		.then( (data) => {
 			return dispatch(
-				addCardSuccess(data.deck.name, data.deck.cards),
+				addCardSuccess(deckName, cards),
 				getDecklist(user)
 			)
 		})
@@ -410,22 +410,25 @@ const updateDeck = (deckName, cards, cardToRemove) => {
 
 //Remove card from deck
 const REMOVE_CARD_SUCCESS = 'REMOVE_CARD_SUCCESS';
-const removeCardSuccess = (deckName, card) => {
+const removeCardSuccess = (deckName, cards) => {
 	return {
-		type: REMOVE_CARD,
+		type: REMOVE_CARD_SUCCESS,
 		deckName: deckName,
-		card: card
+		card: cards
 	}
 };
 
 const REMOVE_CARD_ERROR = 'REMOVE_CARD_ERROR';
 const removeCardError = (error) => {
 	return {
+		type: REMOVE_CARD_ERROR,
 		error: error
 	}
 };
 
 const removeCard = (deckName, cards, user, password) => {
+	console.log(deckName)
+	console.log(cards)
 	return (dispatch) => {
 		const request = new Request('https://still-island-83205.herokuapp.com/user/deck/' + deckName, {
 			method: 'PUT',
@@ -443,8 +446,7 @@ const removeCard = (deckName, cards, user, password) => {
 		})
 		.then( (data) => {
 			return dispatch(
-				removeCardSuccess(data.deck.name, data.deck.cards),
-				getDecklist(user)
+				removeCardSuccess(data.deck.name, data.deck.cards)
 			)
 		})
 		.catch( (err) => {
