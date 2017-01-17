@@ -8,6 +8,7 @@ const RemoveDeck = require('./remove_deck');
 const Card = require('./card');
 
 
+
 class Deck extends React.Component {
 	constructor(props){
 		super(props);
@@ -21,17 +22,17 @@ class Deck extends React.Component {
 
 	render() {
 		let totalCmc = 0;
-		let averageCmc = totalCmc/this.props.cards.length;
 		this.props.cards.forEach( (card) => {
 			if(card.cmc) {
 				totalCmc += card.cmc
-			} else{
-				totalCmc += 0
 			}
 		})
+		let averageCmc = Math.round(totalCmc/this.props.cards.length);
 		let cards = this.props.cards.map( (card) => {
 			return(
-				<Card name={card.name} deck={this.props.deckName} fullCardlist={this.props.fullCardlist} imageUrl={card.imageUrl} />
+				<div>
+					<Card name={card.name} deck={this.props.deckName} fullCardlist={this.props.fullCardlist} imageUrl={card.imageUrl} />
+				</div>
 			);
 		});
 		return (
@@ -39,8 +40,8 @@ class Deck extends React.Component {
 				<h3 className="deckName" onClick={this.clickHandler}>{this.props.deckName}</h3>
 				<span className="deckFormat">Format: {this.props.deckFormat}</span>
 				<span id="averageCmc">Average Cmc: {averageCmc}</span>
-				<ul className="cardList" >{cards}</ul>
 				<RemoveDeck className="removeDeckButton" deckName={this.props.deckName} />
+				<div className="cardList" >{cards}</div>
 			</div>
 		);
 	}

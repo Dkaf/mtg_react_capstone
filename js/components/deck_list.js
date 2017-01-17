@@ -12,7 +12,7 @@ class DeckList extends React.Component {
 		render() {
 			if(this.props.isLoggedIn) {
 				let decks = this.props.decks.map( (deck)=> {
-					let sortedCards = deck.cards.sort((a, b) => {
+					deck.cards = deck.cards.sort((a, b) => {
 						if (a.name < b.name) {
 							return -1
 						}
@@ -22,7 +22,7 @@ class DeckList extends React.Component {
 						return 0
 					})
 					return (
-						<Deck deckName={deck.name} deckFormat={deck.format} fullCardlist={sortedCards} cards={sortedCards}/>
+						<Deck deckName={deck.name} deckFormat={deck.format} fullCardlist={deck.cards} cards={deck.cards}/>
 					)
 				});
 
@@ -45,7 +45,8 @@ let mapStateToProps = (state, props) => {
 	return {
 		decks: state.deckList,
 		selectedDeck: state.selectedDeck.name,
-		isLoggedIn: state.isLoggedIn
+		isLoggedIn: state.isLoggedIn,
+		numberCards: state.selectedDeck.cards
 	}
 };
 

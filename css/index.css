@@ -3,6 +3,7 @@
 html {
 	font-family: 'Carrois Gothic SC', sans-serif;
 	background-image: url('./shattered.png');
+	box-sizing: border-box;
 }
 
 body {
@@ -85,6 +86,9 @@ button {
 /*Deck List Styling*/
 
 .deck {
+	float: left;
+	width: 100%;
+	text-align: center;
 }
 
 #userDiv {
@@ -100,9 +104,26 @@ button {
 
 #deckListDiv {
 	display: block;
+	font-size: 1.4em;
+	text-align: center;
 }
 
 #addDeckDiv {
+	font-size: 1.5em;
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+
+.deckInput {
+	height: 40px;
+	width: 270px;
+	font-size: .75em;
+	text-align: center;
+}
+
+.addDeck {
+	font-size: .75em;
 }
 
 .deckFormat {
@@ -110,16 +131,58 @@ button {
 }
 
 /*Card List Stylings*/
-.cardImage {
+.card {
+	position: relative;
 }
 
-.cardName:hover + .cardImage {
+.card > ul {
+	list-style: none;
 }
+
+.cardName {
+	display: none;
+}
+
+.removeDeckButton {
+	display: block;
+	font-size: .8em;
+	margin: 0 auto;
+	text-transform: capitalize;
+}
+
+.removeDeckButton:hover {
+	cursor: pointer;
+}
+
+/*.cardImage {
+	position: absolute;
+	left: 35%;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity .5s ease-in;
+}*/
+
+/*.cardName {
+	display: block;
+}*/
+
+/*.cardName:hover + .cardImage {
+	visibility: visible;
+	opacity: 1;
+}*/
+
+/*.cardImage:hover {
+	visibility: visible;
+	opacity: 1;
+}*/
+
 
 /*Card Search Stylings*/
 #searchDiv {
 	text-align: center;
 	margin-bottom: 25px;
+	width: 100%;
+	float: left;
 }
 
 #searchDiv h2 {
@@ -167,4 +230,44 @@ button {
 	height: 42px;
 	font-size: 1.5em;
 	text-align: center;
+}
+
+/*Image Gallery*/
+.cardList {
+  width: 640px;
+  margin: 0 auto;
+  padding: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.3);
+}
+
+.card {
+  position: relative;
+  float: left;
+  padding: 5px;
+}
+
+.cardImage > img {
+  display: block;
+  width: 200px;
+  transition: .1s transform;
+  transform: translateZ(0); /* hack */
+}
+
+.card:hover {
+  z-index: 1;
+}
+
+.cardImage:hover > img {
+  transform: scale(1.7,1.7);
+  transition: .3s transform;
+}
+
+.cf:before, .cf:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+
+.cf:after {
+  clear: both;
 }

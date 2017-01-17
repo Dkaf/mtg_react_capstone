@@ -18,7 +18,7 @@ class RemoveDeck extends React.Component {
 
 	render() {
 		return (
-				<Button text="remove deck" deckName={this.props.deckName} onClick={this.clickHandler}/>
+				<Button className={this.props.className} text="remove deck" deckName={this.props.deckName} onClick={this.clickHandler}/>
 		);
 	}
 }

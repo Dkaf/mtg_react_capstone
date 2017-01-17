@@ -24,9 +24,8 @@ class Card extends React.Component {
 			<div className="card">
 				<ul>
 					<li className="cardName">{this.props.name}</li>
-					<li className="cardType" hidden="true">{this.props.type}</li>
+					<li className="cardImage"><img src={this.props.imageUrl}></img></li>
 				</ul>
-				<img className="cardImage" src={this.props.imageUrl}></img>
 				<a href="#" onClick={this.removeCard}>Remove</a>
 			</div>
 		)

@@ -13,7 +13,7 @@ let initialState = {
 		colors: []
 	},
 	cardSearchResults: [],
-	selectedDeck: {deckName:''}
+	selectedDeck: {deckName:'', cards:[{}]}
 };
 
 
@@ -88,7 +88,7 @@ const mainReducer = (state = initialState ,action) => {
 		case Actions.ADD_DECK_SUCCESS:
 			console.log(state);
 			return Object.assign({}, state, {
-				deckList: state.deckList.concat({name:action.deckName, format:action.deckFormat, cardList: []})
+				deckList: state.deckList.concat({name:action.deckName, format:action.deckFormat, cards: []})
 			})
 
 		case Actions.ADD_DECK_ERROR:
@@ -124,7 +124,7 @@ const mainReducer = (state = initialState ,action) => {
 			});
 			deck.cards = action.cards
 			return Object.assign({}, state, {
-				deckList: state.deckList
+				deckList: state.deckList.concat()
 			})
 
 		case Actions.ADD_CARD_ERROR:

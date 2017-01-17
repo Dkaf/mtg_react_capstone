@@ -1,23 +1,20 @@
-# Thinkful React Starter
+# Magic the Gathering Deck Builder App
 
-A template for developing React apps.
+A simple deck builder for the Magic the Gathering card game utilizing mtg API
 
-## Getting started
+## Background
+I wanted to build this app because I am a fan of the game. It allows you to create mockups of decks that players would use in the game.
 
-### Setting up a project
+## Functionality
+*User profiles
+*Deck creation
+*Card search with filters
+*Add/remove cards
 
-* Move into your projects directory: `cd ~/YOUR_PROJECTS_DIRECTORY`
-* Clone this repository: `git clone https://github.com/oampo/thinkful-react-starter YOUR_PROJECT_NAME`
-* Move into the project directory: `cd YOUR_PROJECT_NAME`
-* Install the dependencies: `npm install`
-* Create a new repo on GitHub: https://github.com/new
-    * Make sure the "Initialize this repository with a README" option is left **un**checked
-* Update the remote to point to your GitHub repository: `git remote set-url origin https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME`
+## Technologies Used
+React and redux were used to create the front end with node.js used for the backend. Card search data provided by 'http://magicthegathering.io/'
 
-### Working on the project
-
-* Move into the project directory: `cd ~/YOUR_PROJECTS_DIRECTORY/YOUR_PROJECT_NAME`
-* Run the development task: `npm run dev`
-    * Starts a server running at http://localhost:8080
-    * Automatically rebuilds when any of your files change
-
+##Future Plans
+*Deck Search
+*User Search
+*More deck statistics
