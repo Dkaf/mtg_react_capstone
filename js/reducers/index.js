@@ -13,7 +13,8 @@ let initialState = {
 		colors: []
 	},
 	cardSearchResults: [],
-	selectedDeck: {deckName:'', cards:[{}]}
+	selectedDeck: {deckName:'', cards:[{}]},
+	deckIsActive: false
 };
 
 
@@ -191,6 +192,11 @@ const mainReducer = (state = initialState ,action) => {
 		case Actions.DECK_FORMAT:
 			return Object.assign({}, state, {
 				deckFormat: action.format
+			})
+
+		case Actions.DECK_IS_ACTIVE:
+			return Object.assign({}, state, {
+				deckIsActive: !state.deckIsActive
 			})
 
 		case Actions.CARD_SEARCH_SUCCESS:

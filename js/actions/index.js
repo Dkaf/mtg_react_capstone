@@ -236,6 +236,13 @@ const deckFormat = (format) => {
 	}
 }
 
+const DECK_IS_ACTIVE = 'DECK_IS_ACTIVE';
+const deckIsActive = () => {
+	return {
+		type: DECK_IS_ACTIVE
+	}
+}
+
 //Add a deck
 const ADD_DECK_SUCCESS = 'ADD_DECK_SUCCESS';
 const addDeckSuccess = (deck, format) => {
@@ -639,6 +646,8 @@ exports.DECK_NAME = DECK_NAME;
 exports.deckName = deckName;
 exports.DECK_FORMAT = DECK_FORMAT;
 exports.deckFormat = deckFormat;
+exports.DECK_IS_ACTIVE = DECK_IS_ACTIVE;
+exports.deckIsActive = deckIsActive;
 exports.ADD_DECK_SUCCESS = ADD_DECK_SUCCESS;
 exports.addDeckSuccess = addDeckSuccess;
 exports.ADD_DECK_ERROR = ADD_DECK_ERROR;
