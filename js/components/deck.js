@@ -27,7 +27,6 @@ class Deck extends React.Component {
 		}
 
 	render() {
-		let classNames;
 		let totalCmc = 0;
 		this.props.cards.forEach( (card) => {
 			if(card.cmc) {
@@ -43,15 +42,13 @@ class Deck extends React.Component {
 			);
 		});
 		let deckIsActive = () => {
-			if(this.props.deckIsActive) {
-				return classNames = 'deckName deckActive'
-			}
-			return classNames = 'deckName'
+			let classNames = 'deckName ' + ((this.props.selectedDeck.name == this.props.deckName) ?'deckActive':'');
+			return classNames
 		};
 		deckIsActive();
 		return (
 			<div className="deck">
-				<h3 className={classNames} onClick={this.clickHandler}>{this.props.deckName}</h3>
+				<h3 className={deckIsActive()} onClick={this.clickHandler}>{this.props.deckName}</h3>
 				<span className="deckFormat">Format: {this.props.deckFormat}</span>
 				<span id="averageCmc">Average Cmc: {averageCmc}</span>
 				<RemoveDeck className="removeDeckButton" deckName={this.props.deckName} />
@@ -63,7 +60,6 @@ class Deck extends React.Component {
 
 let mapStateToProps = (state, props) => {
 	return {
-		deckIsActive: state.deckIsActive,
 		selectedDeck: state.selectedDeck
 	}
 }

@@ -111,11 +111,14 @@ button {
 	display: block;
 	font-size: 1.4em;
 	text-align: center;
+	position: relative;
 }
 
 #selectedDeck {
 	text-align: left;
-	position: fixed;
+	position: absolute;
+	top: 0;
+	left:0;
 }
 
 #addDeckDiv {

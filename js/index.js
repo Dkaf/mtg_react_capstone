@@ -17,3 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		document.getElementById('app')
 	)
 });
+
+window.addEventListener('scroll', () => {
+	let selectElem = document.querySelector("#selectedDeck")
+	let headerElem = document.querySelector("#headerDiv")
+	if(selectElem){
+		if(window.scrollY >= headerElem.scrollHeight + selectElem.scrollHeight) {
+			selectElem.style.position = "fixed"
+		} else {
+			selectElem.style.position = "absolute"
+		}
+	}
+})
