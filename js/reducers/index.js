@@ -150,35 +150,44 @@ const mainReducer = (state = initialState ,action) => {
 		case Actions.REMOVE_CARD_ERROR:
 			console.log(action.error)
 
+		case Actions.FILTER_RESET:
+			return Object.assign({}, state, {
+				filters: initialState.filters
+			})
 
 		case Actions.NAME_FILTER:
-			console.log(state.filters);
+			let filters = state.filters
+			filters.name = action.name
 			return Object.assign({}, state, {
-				filters: {name: action.name}
+				filters: state.filters.concat()
 			})
 
 		case Actions.CMC_FILTER:
+			filters.cmc = action.cmc
 			return Object.assign({}, state, {
-				filters: {cmc: action.cmc}
+				filters: state.filters.concat()
 			})
 
 		case Actions.TYPE_FILTER:
+			filters.type = action.type
 			return Object.assign({}, state, {
-				filters: {type: action.typeOption}
+				filters: state.filters.concat()
 			})
 
 		case Actions.RARITY_FILTER:
+			filters.rarity = action.rarity
 			return Object.assign({}, state, {
-				filters: {rarity: action.rarity}
+				filters: state.filters.concat()
 			})
 
 		case Actions.COLOR_FILTER:
+			filters.colors = filters.colors.concat(action.color)
 			return Object.assign({}, state, {
-				filters: {colors: state.filters.colors.concat(action.color)}
+				filters: state.filters.concat()
 			})
 
 		case Actions.REMOVE_COLOR_FILTER:
-			state.filters.colors.splice(state.filters.colors.indexOf(action.color), 1);
+			filters.colors = filters.colors.splice(filters.colors.indexOf(action.color), 1);
 			return Object.assign({}, state, {
 				filters: {colors: state.filters.colors}
 			})

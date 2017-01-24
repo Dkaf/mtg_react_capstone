@@ -553,6 +553,14 @@ const cardSearch = (filters) => {
 	}
 };
 
+//Reset filters in state
+const FILTER_RESET = 'FILTER_RESET';
+const filterReset = () => {
+	return {
+		type: FILTER_RESET
+	}
+}
+
 //Add filters to state
 const NAME_FILTER = 'NAME_FILTER';
 const nameFilter = (name) => {
@@ -679,6 +687,8 @@ exports.deckSearchSuccess = deckSearchSuccess;
 exports.DECK_SEARCH_ERROR = DECK_SEARCH_ERROR;
 exports.deckSearchError = deckSearchError;
 exports.deckSearch = deckSearch;
+exports.FILTER_RESET = FILTER_RESET;
+exports.filterReset = filterReset;
 exports.NAME_FILTER = NAME_FILTER;
 exports.nameFilter = nameFilter;
 exports.CMC_FILTER = CMC_FILTER;

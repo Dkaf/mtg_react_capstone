@@ -15,6 +15,7 @@ class Search extends React.Component {
 		e.preventDefault();
 		console.log(store.getState());
 		store.dispatch(actions.cardSearch(store.getState().filters));
+		store.dispatch(actions.filterReset());
 		e.target.reset();
 	}
 
