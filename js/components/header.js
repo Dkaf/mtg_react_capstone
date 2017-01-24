@@ -31,7 +31,7 @@ class Header extends React.Component {
 	render() {
 		return (
 			<div id="headerDiv">
-				<img id="mainBanner" src='../css/banner.png'></img>
+				<img id="mainBanner" src='css/banner.png'></img>
 				<Greeting onSubmit={this.login} usernameChange={this.usernameHandler}
 						  passwordChange={this.passwordHandler} onClick={this.login} />
 			</div>

@@ -81,11 +81,11 @@ class Search extends React.Component {
 					</select>
 					<label htmlFor="blackSelect" id="colorLabel">Colors</label>
 					<fieldset className="colorSelector">
-						<Checkbox className="colorOption" id="blackSelect" value="black" image="../css/black_mana_button.png" onClick={this.colorFilter} />
-						<Checkbox className="colorOption" id="blueSelect" value="blue" image="../css/blue.png" onClick={this.colorFilter} />
-						<Checkbox className="colorOption" id="greenSelect" value="green" image="../css/green.png" onClick={this.colorFilter} />
-						<Checkbox className="colorOption" id="redSelect" value="red" image="../css/red.png" onClick={this.colorFilter} />
-						<Checkbox className="colorOption" id="whiteSelect" value="white" image="../css/white.png" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="blackSelect" value="black" image="css/black_mana_button.png" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="blueSelect" value="blue" image="css/blue.png" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="greenSelect" value="green" image="css/green.png" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="redSelect" value="red" image="css/red.png" onClick={this.colorFilter} />
+						<Checkbox className="colorOption" id="whiteSelect" value="white" image="css/white.png" onClick={this.colorFilter} />
 					</fieldset>
 					<Button className="submitButton" type="submit" text="Submit" />
 				</form>
