@@ -9,11 +9,11 @@ const store = require('./store')
 const App = require('./components/app');
 const User = require('./components/user');
 
-const MainComponent = <Provider store={store}><App /></Provider>
-
 document.addEventListener('DOMContentLoaded', () => {
 	ReactDOM.render(
-		MainComponent,
+		<Provider store={store}>
+			<App />
+		</Provider>,
 		document.getElementById('app')
 	)
 });

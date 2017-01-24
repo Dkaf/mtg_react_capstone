@@ -17,4 +17,7 @@
 		color: rgb(60, 95, 94);
 
 	}
+	#selectedDeck {
+		font-size: 1em;
+	}
 }
