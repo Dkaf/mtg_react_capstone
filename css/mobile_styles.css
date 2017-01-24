@@ -1,0 +1,23 @@
+@media (max-width: 500px) {
+	#loginForm {
+		position: static;
+		left: 0;
+		top: 0;
+		margin-bottom: 15px;
+	}
+	#loginLink {
+		color: rgb(60, 95, 94);
+	}
+}
+
+@media (max-width: 655px) {
+	.greetingMessage {
+		position: static;
+		text-align: center;
+		color: rgb(60, 95, 94);
+
+	}
+	#selectedDeck {
+		font-size: 1em;
+	}
+}
