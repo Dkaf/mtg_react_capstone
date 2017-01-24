@@ -181,7 +181,7 @@ const mainReducer = (state = initialState ,action) => {
 			})
 
 		case Actions.COLOR_FILTER:
-			filters.colors = state.filters.colors.concat(action.color)
+			let filters.colors = state.filters.colors.concat(action.color)
 			return Object.assign({}, state, {
 				filters: state.filters.concat()
 			})
