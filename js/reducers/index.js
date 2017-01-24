@@ -181,13 +181,13 @@ const mainReducer = (state = initialState ,action) => {
 			})
 
 		case Actions.COLOR_FILTER:
-			filters.colors = filters.colors.concat(action.color)
+			filters.colors = state.filters.colors.concat(action.color)
 			return Object.assign({}, state, {
 				filters: state.filters.concat()
 			})
 
 		case Actions.REMOVE_COLOR_FILTER:
-			filters.colors = filters.colors.splice(filters.colors.indexOf(action.color), 1);
+			filters.colors = state.filters.colors.splice(state.filters.colors.indexOf(action.color), 1);
 			return Object.assign({}, state, {
 				filters: {colors: state.filters.colors}
 			})
