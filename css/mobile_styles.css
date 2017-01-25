@@ -19,6 +19,9 @@
 	}
 	.card {
 		float: none;
+		transition: none;
+		transform: none;
+		text-align: left;
 	}
 	#selectedDeck {
 		font-size: .6em;

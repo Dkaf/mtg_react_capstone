@@ -110,6 +110,7 @@ button {
 #deckListDiv {
 	display: block;
 	font-size: 1.4em;
+	overflow-x: hidden;
 	text-align: center;
 	position: relative;
 }
