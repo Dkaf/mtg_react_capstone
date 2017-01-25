@@ -11,6 +11,10 @@ let initialState = {
 	],
 	filters: {
 		colors: [],
+		cmc: null,
+		rarity: null,
+		type: null,
+		name: null
 	},
 	cardSearchResults: [],
 	selectedDeck: {deckName:'', cards:[{}]},
