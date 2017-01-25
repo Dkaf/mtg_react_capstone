@@ -174,7 +174,6 @@ const mainReducer = (state = initialState ,action) => {
 			})
 
 		case Actions.TYPE_FILTER:
-			filters.type = action.type
 			return Object.assign({}, state, {
 				filters: {name: state.filters.name,
 					 	  colors: state.filters.colors,
@@ -184,7 +183,6 @@ const mainReducer = (state = initialState ,action) => {
 			})
 
 		case Actions.RARITY_FILTER:
-			filters.rarity = action.rarity
 			return Object.assign({}, state, {
 				filters: {name: state.filters.name,
 					 	  colors: state.filters.colors,
