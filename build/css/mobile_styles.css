@@ -26,4 +26,9 @@
 	#selectedDeck {
 		font-size: .6em;
 	}
+
+	.cardImage:hover > img {
+		transition: none;
+		transform: none;
+	}
 }
