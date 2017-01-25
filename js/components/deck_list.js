@@ -29,7 +29,7 @@ class DeckList extends React.Component {
 				return (
 					<div id="deckListDiv">
 						<h2>Deck List</h2>
-						<h3 id="selectedDeck">Selected Deck:<br /> {this.props.selectedDeck}</h3>
+						<h3 id="selectedDeck">Selected Deck:<br /><span id="selectedDeckName">{this.props.selectedDeck}</span></h3>
 						<ul>
 							{decks}
 						</ul>
