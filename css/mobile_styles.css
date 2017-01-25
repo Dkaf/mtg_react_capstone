@@ -17,6 +17,9 @@
 		color: rgb(60, 95, 94);
 
 	}
+	.card {
+		float: none;
+	}
 	#selectedDeck {
 		font-size: .6em;
 	}
