@@ -10,7 +10,7 @@ let initialState = {
 		}
 	],
 	filters: {
-		colors: []
+		colors: [],
 	},
 	cardSearchResults: [],
 	selectedDeck: {deckName:'', cards:[{}]},
@@ -156,40 +156,61 @@ const mainReducer = (state = initialState ,action) => {
 			})
 
 		case Actions.NAME_FILTER:
-			let filters = state.filters
-			filters.name = action.name
 			return Object.assign({}, state, {
-				filters: state.filters.concat()
+				filters: {name: action.name,
+					 	  colors: state.filters.color,
+					   	  rarity: state.filters.rarity,
+					  	  type: state.filters.type,
+						  cmc: state.filters.cmc}
 			})
 
 		case Actions.CMC_FILTER:
-			filters.cmc = action.cmc
 			return Object.assign({}, state, {
-				filters: state.filters.concat()
+				filters: {name: state.filters.name,
+					 	  colors: state.filters.color,
+					   	  rarity: state.filters.rarity,
+					  	  type: state.filters.type,
+					  	  cmc: action.cmc}
 			})
 
 		case Actions.TYPE_FILTER:
 			filters.type = action.type
 			return Object.assign({}, state, {
-				filters: state.filters.concat()
+				filters: {name: state.filters.name,
+					 	  colors: state.filters.color,
+					   	  rarity: state.filters.rarity,
+					  	  type: action.type,
+					  	  cmc: state.filters.cmc}
 			})
 
 		case Actions.RARITY_FILTER:
 			filters.rarity = action.rarity
 			return Object.assign({}, state, {
-				filters: state.filters.concat()
+				filters: {name: state.filters.name,
+					 	  colors: state.filters.color,
+					   	  rarity: action.rarity,
+					  	  type: state.filters.type,
+					  	  cmc: state.filters.cmc}
 			})
 
 		case Actions.COLOR_FILTER:
-			let filters.colors = state.filters.colors.concat(action.color)
+			state.filters.colors.concat(action.color)
 			return Object.assign({}, state, {
-				filters: state.filters.concat()
+				filters: {name: state.filters.name,
+					 	  colors: state.filters.color,
+					   	  rarity: state.filters.rarity,
+					  	  type: state.filters.type,
+					  	  cmc: state.filters.cmc}
 			})
 
 		case Actions.REMOVE_COLOR_FILTER:
-			filters.colors = state.filters.colors.splice(state.filters.colors.indexOf(action.color), 1);
+			state.filters.colors.splice(state.filters.colors.indexOf(action.color), 1);
 			return Object.assign({}, state, {
-				filters: {colors: state.filters.colors}
+				filters: {name: state.filters.name,
+					 	  colors: state.filters.color,
+					   	  rarity: state.filters.rarity,
+					  	  type: state.filters.type,
+					  	  cmc: action.cmc}
 			})
 
 
