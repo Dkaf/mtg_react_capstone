@@ -13,8 +13,6 @@ class Search extends React.Component {
 
 	constructor(props){
 		super(props);
-		// page * pageSize, (page * pageSize) + pageSize
-		let pageSize = 10;
 	}
 
 	submitHandler(e) {
@@ -26,7 +24,7 @@ class Search extends React.Component {
 	}
 
 	pageForward() {
-		if(store.getState().page * pageSize <= this.props.searchResults.length) {
+		if(store.getState().page * store.getState().pageSize <= this.props.searchResults.length) {
 			store.dispatch(actions.pageForward());
 		}
 	}
@@ -64,7 +62,7 @@ class Search extends React.Component {
 	}
 
 	render() {
-		let pageContent = this.props.searchResults.slice(this.props.page * pageSize, (this.props.page * pageSize) + pageSize)
+		let pageContent = this.props.searchResults.slice(this.props.page * this.props.pageSize, (this.props.page * this.props.pageSize) + this.props.pageSize)
 
 		let searchResults = pageContent.map( (key) => {
 			console.log(key);
@@ -122,7 +120,8 @@ class Search extends React.Component {
 let mapStateToProps = (state, props) => {
 	return ({
 		searchResults: state.cardSearchResults,
-		page: state.page
+		page: state.page,
+		pageSize: state.pageSize
 	})
 }
 

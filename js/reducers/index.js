@@ -15,7 +15,8 @@ let initialState = {
 	cardSearchResults: [],
 	selectedDeck: {deckName:'', cards:[{}]},
 	deckIsActive: false,
-	page: 0
+	page: 0,
+	pageSize: 10
 };
 
 
