@@ -14,6 +14,7 @@ class Search extends React.Component {
 	constructor(props){
 		super(props);
 		// page * pageSize, (page * pageSize) + pageSize
+		let pageSize = 10;
 	}
 
 	submitHandler(e) {
@@ -63,7 +64,6 @@ class Search extends React.Component {
 	}
 
 	render() {
-		let pageSize = 10;
 		let pageContent = this.props.searchResults.slice(this.props.page * pageSize, (this.props.page * pageSize) + pageSize)
 
 		let searchResults = pageContent.map( (key) => {
