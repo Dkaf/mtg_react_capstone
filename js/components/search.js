@@ -14,7 +14,6 @@ class Search extends React.Component {
 	constructor(props){
 		super(props);
 		// page * pageSize, (page * pageSize) + pageSize
-		this.props.page = this.props.page.bind(this);
 	}
 
 	submitHandler(e) {
