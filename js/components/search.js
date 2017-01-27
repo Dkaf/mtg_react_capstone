@@ -24,13 +24,13 @@ class Search extends React.Component {
 	}
 
 	pageForward() {
-		if(store.getState().page * store.getState().pageSize <= this.props.searchResults.length) {
+		if(this.props.page * this.props.pageSize <= this.props.searchResults.length) {
 			store.dispatch(actions.pageForward());
 		}
 	}
 
 	pageBack() {
-		if(store.getState().page != 0) {
+		if(this.props.page != 0) {
 			store.dispatch(actions.pageBack());
 		}
 	}
@@ -118,11 +118,11 @@ class Search extends React.Component {
 }
 
 let mapStateToProps = (state, props) => {
-	return ({
+	return {
 		searchResults: state.cardSearchResults,
 		page: state.page,
 		pageSize: state.pageSize
-	})
+	}
 }
 
 let Container = connect(mapStateToProps)(Search);
