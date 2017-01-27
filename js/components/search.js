@@ -64,7 +64,7 @@ class Search extends React.Component {
 
 	render() {
 		let pageSize = 10;
-		let pageContent = this.props.searchResults.slice(page * pageSize, (page * pageSize) + pageSize)
+		let pageContent = this.props.searchResults.slice(this.props.page * pageSize, (this.props.page * pageSize) + pageSize)
 
 		let searchResults = pageContent.map( (key) => {
 			console.log(key);
