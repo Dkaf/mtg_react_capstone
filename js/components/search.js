@@ -14,6 +14,7 @@ class Search extends React.Component {
 	constructor(props){
 		super(props);
 		// page * pageSize, (page * pageSize) + pageSize
+		this.props.page = this.props.page.bind(this);
 	}
 
 	submitHandler(e) {
@@ -25,13 +26,13 @@ class Search extends React.Component {
 	}
 
 	pageForward() {
-		if(this.props.page * pageSize <= this.props.searchResults.length) {
+		if(store.getState().page * pageSize <= this.props.searchResults.length) {
 			store.dispatch(actions.pageForward());
 		}
 	}
 
 	pageBack() {
-		if(this.props.page != 0) {
+		if(store.getState().page != 0) {
 			store.dispatch(actions.pageBack());
 		}
 	}
@@ -108,12 +109,12 @@ class Search extends React.Component {
 						<Checkbox className="colorOption" id="whiteSelect" value="white" image="css/white.png" onClick={this.colorFilter} />
 					</fieldset>
 					<Button className="submitButton" type="submit" text="Submit" />
-					<i className="fa fa-arrow-circle-o-left fa-4x pageButton" id="pageBack" aria-hidden="true" onClick={this.pageBack}></i>
-					<i className="fa fa-arrow-circle-o-right fa-4x pageButton" id="pageForward" aria-hidden="true" onClick={this.pageForward}></i>
 				</form>
 				<ul>
 					{searchResults}
 				</ul>
+				<i className="fa fa-arrow-circle-o-left fa-4x pageButton" id="pageBack" aria-hidden="true" onClick={this.pageBack}></i>
+				<i className="fa fa-arrow-circle-o-right fa-4x pageButton" id="pageForward" aria-hidden="true" onClick={this.pageForward}></i>
 			</div>
 		);
 	}

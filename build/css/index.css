@@ -246,6 +246,11 @@ button {
 	text-align: center;
 }
 
+#pageButton {
+
+}
+
+
 /*Image Gallery*/
 .cardList {
   width: 640px;
