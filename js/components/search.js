@@ -24,13 +24,13 @@ class Search extends React.Component {
 	}
 
 	pageForward() {
-		if(this.props.page * this.props.pageSize <= this.props.searchResults.length) {
+		if(store.getState().page * store.getState().pageSize <= store.getState().searchResults.length) {
 			store.dispatch(actions.pageForward());
 		}
 	}
 
 	pageBack() {
-		if(this.props.page != 0) {
+		if(store.getState().page != 0) {
 			store.dispatch(actions.pageBack());
 		}
 	}
