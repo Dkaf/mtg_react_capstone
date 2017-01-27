@@ -11,12 +11,29 @@ const AddCard = require('./add_card');
 
 class Search extends React.Component {
 
+	constructor(props){
+		super(props);
+		// page * pageSize, (page * pageSize) + pageSize
+	}
+
 	submitHandler(e) {
 		e.preventDefault();
 		console.log(store.getState());
 		store.dispatch(actions.cardSearch(store.getState().filters));
 		store.dispatch(actions.filterReset());
 		e.target.reset();
+	}
+
+	pageForward() {
+		if(this.props.page * pageSize <= this.props.searchResults.length) {
+			store.dispatch(actions.pageForward());
+		}
+	}
+
+	pageBack() {
+		if(this.props.page != 0) {
+			store.dispatch(actions.pageBack());
+		}
 	}
 
 	nameFilter(e) {
@@ -46,8 +63,10 @@ class Search extends React.Component {
 	}
 
 	render() {
+		let pageSize = 10;
+		let pageContent = this.props.searchResults.slice(page * pageSize, (page * pageSize) + pageSize)
 
-		let searchResults = this.props.searchResults.map( (key) => {
+		let searchResults = pageContent.map( (key) => {
 			console.log(key);
 			return (
 				<li>
@@ -89,6 +108,8 @@ class Search extends React.Component {
 						<Checkbox className="colorOption" id="whiteSelect" value="white" image="css/white.png" onClick={this.colorFilter} />
 					</fieldset>
 					<Button className="submitButton" type="submit" text="Submit" />
+					<i class="fa fa-arrow-circle-o-left fa-4x pageButton" id="pageBack" aria-hidden="true" onClick={this.pageBack}></i>
+					<i class="fa fa-arrow-circle-o-right fa-4x pageButton" id="pageForward" aria-hidden="true" onClick={this.pageForward}></i>
 				</form>
 				<ul>
 					{searchResults}
@@ -100,7 +121,8 @@ class Search extends React.Component {
 
 let mapStateToProps = (state, props) => {
 	return ({
-		searchResults: state.cardSearchResults
+		searchResults: state.cardSearchResults,
+		page: state.page
 	})
 }
 

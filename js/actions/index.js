@@ -553,6 +553,22 @@ const cardSearch = (filters) => {
 	}
 };
 
+//Page forward
+const PAGE_FORWARD = 'PAGE_FORWARD';
+const pageForward = () => {
+	return {
+		type: PAGE_FORWARD
+	}
+}
+
+//Page back
+const PAGE_BACK = 'PAGE_BACK';
+const pageBack = () => {
+	return {
+		type: PAGE_BACK
+	}
+}
+
 //Reset filters in state
 const FILTER_RESET = 'FILTER_RESET';
 const filterReset = () => {

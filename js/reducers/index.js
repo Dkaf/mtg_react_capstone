@@ -10,15 +10,12 @@ let initialState = {
 		}
 	],
 	filters: {
-		colors: [],
-		cmc: null,
-		rarity: null,
-		type: null,
-		name: null
+		colors: []
 	},
 	cardSearchResults: [],
 	selectedDeck: {deckName:'', cards:[{}]},
-	deckIsActive: false
+	deckIsActive: false,
+	page: 0
 };
 
 
@@ -154,6 +151,16 @@ const mainReducer = (state = initialState ,action) => {
 		case Actions.REMOVE_CARD_ERROR:
 			console.log(action.error)
 
+		case Actions.PAGE_FORWARD:
+			return Object.assign({}, state, {
+				page: state.page + 1
+			})
+
+		case Actions.PAGE_BACK:
+			return Object.assign({}, state, {
+				page: state.page - 1
+			})
+
 		case Actions.FILTER_RESET:
 			return Object.assign({}, state, {
 				filters: initialState.filters
@@ -161,57 +168,33 @@ const mainReducer = (state = initialState ,action) => {
 
 		case Actions.NAME_FILTER:
 			return Object.assign({}, state, {
-				filters: {name: action.name,
-					 	  colors: state.filters.colors,
-					   	  rarity: state.filters.rarity,
-					  	  type: state.filters.type,
-						  cmc: state.filters.cmc}
+				filters: Object.assign({}, state.filters, {name: action.name})
 			})
 
 		case Actions.CMC_FILTER:
 			return Object.assign({}, state, {
-				filters: {name: state.filters.name,
-					 	  colors: state.filters.colors,
-					   	  rarity: state.filters.rarity,
-					  	  type: state.filters.type,
-					  	  cmc: action.cmc}
+				filters: Object.assign({}, state.filters, {cmc: action.cmc})
 			})
 
 		case Actions.TYPE_FILTER:
 			return Object.assign({}, state, {
-				filters: {name: state.filters.name,
-					 	  colors: state.filters.colors,
-					   	  rarity: state.filters.rarity,
-					  	  type: action.type,
-					  	  cmc: state.filters.cmc}
+				filters: Object.assign({}, state.filters, {type: action.type})
 			})
 
 		case Actions.RARITY_FILTER:
 			return Object.assign({}, state, {
-				filters: {name: state.filters.name,
-					 	  colors: state.filters.colors,
-					   	  rarity: action.rarity,
-					  	  type: state.filters.type,
-					  	  cmc: state.filters.cmc}
+				filters: Object.assign({}, state.filters, {rarity: action.rarity})
 			})
 
 		case Actions.COLOR_FILTER:
 			return Object.assign({}, state, {
-				filters: {name: state.filters.name,
-					 	  colors: state.filters.colors.concat(action.color),
-					   	  rarity: state.filters.rarity,
-					  	  type: state.filters.type,
-					  	  cmc: state.filters.cmc}
+				filters: Object.assign({}, state.filters, {colors: state.filters.colors.concat(action.color)})
 			})
 
 		case Actions.REMOVE_COLOR_FILTER:
 			state.filters.colors.splice(state.filters.colors.indexOf(action.color), 1);
 			return Object.assign({}, state, {
-				filters: {name: state.filters.name,
-					 	  colors: state.filters.colors,
-					   	  rarity: state.filters.rarity,
-					  	  type: state.filters.type,
-					  	  cmc: action.cmc}
+				filters: Object.assign({}, state.filters)
 			})
 
 
