@@ -217,7 +217,9 @@ const mainReducer = (state = initialState ,action) => {
 		case Actions.CARD_SEARCH_SUCCESS:
 			console.log(action.cards)
 			return Object.assign({}, state, {
-				cardSearchResults: action.cards
+				cardSearchResults: action.cards.filter(() => {
+					return boolean(card.imageURL)
+				})
 			})
 
 		case Actions.CARD_SEARCH_ERROR:
