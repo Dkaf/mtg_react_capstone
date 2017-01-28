@@ -13,6 +13,7 @@ class Search extends React.Component {
 
 	constructor(props){
 		super(props);
+		this.pageForward
 	}
 
 	submitHandler(e) {
@@ -24,7 +25,7 @@ class Search extends React.Component {
 	}
 
 	pageForward() {
-		if(store.getState().page * store.getState().pageSize <= store.getState().searchResults.length) {
+		if(store.getState().page * store.getState().pageSize <= store.getState().cardSearchResults.length) {
 			store.dispatch(actions.pageForward());
 		}
 	}
