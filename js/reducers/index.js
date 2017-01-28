@@ -218,7 +218,7 @@ const mainReducer = (state = initialState ,action) => {
 			console.log(action.cards)
 			return Object.assign({}, state, {
 				cardSearchResults: action.cards.filter(() => {
-					return boolean(card.imageURL)
+					return Boolean(card.imageURL)
 				})
 			})
 
