@@ -6,7 +6,7 @@ class Footer extends React.Component {
 		return (
 			<div id="footer-div">
 				<span id="footer-name">Daniel Kafer</span>
-				<a href="#" id="footer-link">Website Link</a>
+				<a href="https://dkaf.github.io/portfolio/index.html" id="footer-link">Portfolio</a>
 			</div>
 		);
 	}
