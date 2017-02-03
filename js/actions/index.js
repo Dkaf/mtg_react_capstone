@@ -540,7 +540,6 @@ const cardSearch = (filters) => {
 			return response.json()
 		})
 		.then( (data) =>{
-			data.forEach((key) =>{console.log(key.name)});
 			return dispatch(
 				cardSearchSuccess(data)
 			)
