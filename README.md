@@ -2,19 +2,41 @@
 
 A simple deck builder for the Magic the Gathering card game utilizing mtg API
 
-## Background
-I wanted to build this app because I am a fan of the game. It allows you to create mockups of decks that players would use in the game.
+## Installing
+```
+> git clone https://github.com/Dkaf/mtg_react_capstone.git
+> npm install
+```
 
+## Launching
+Dev Mode
+```
+> npm start
+```
+Production
+```
+> npm build
+```
+
+https://github.com/Dkaf/mtg_react_capstone
 ## Functionality
-*User profiles
-*Deck creation
-*Card search with filters
-*Add/remove cards
+<img src="/screenshots/deck_builder_deck_screenshot.png">
+<img src="/screenshots/deck_builder_screenshot.png">
+<ul>
+	<li>User profiles</li>
+	<li>Deck creation</li>
+	<li>Card search with filters</li>
+	<li>Add/remove cards</li>
+</ul>
+
+## How it Works
 
 ## Technologies Used
-React and redux were used to create the front end with node.js used for the backend. Card search data provided by 'http://magicthegathering.io/'
+React and redux were used to create the front end with node.js used for the backend. Card search data provided by [http://magicthegathering.io](http://magicthegathering.io/)
 
-##Future Plans
-*Deck Search
-*User Search
-*More deck statistics
+## Future Plans
+<ul>
+	<li>Deck Search</li>
+	<li>User Search<li>
+	<li>More deck statistics</li>
+</ul>
