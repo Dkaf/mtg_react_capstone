@@ -55,3 +55,7 @@ React and redux were used to create the front end with node.js used for the back
 	<li>User Search</li>
 	<li>More deck statistics</li>
 </ul>
+
+## Server
+
+https://github.com/Dkaf/mtg_capstone
