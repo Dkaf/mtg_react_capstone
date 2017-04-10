@@ -15,11 +15,11 @@ https://dkaf.github.io/mtg_react_capstone/
 ## Launching
 Dev Mode
 ```
-> npm start
+> npm run dev
 ```
 Production
 ```
-> npm build
+> npm run build
 ```
 
 ## Functionality
