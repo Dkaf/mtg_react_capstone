@@ -1,5 +1,5 @@
 import { loginTypes } from './../../js/actions/actionTypes';
-import loginReducer from './../../js/reducers/login';
+import { loginReducer } from './../../js/reducers/login';
 
 describe('login reducer', () => {
   it('should handle LOGIN_SUCCESS', () => {
