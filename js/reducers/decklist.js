@@ -1,6 +1,6 @@
 import { decklistTypes } from './../actions/actionTypes';
 import { addToArray } from './utilityFunctions'
-export function decklistReducer(state = [], action) {
+export function decklistReducer(state = {}, action) {
   switch(action.type) {
     case decklistTypes.GET_DECKLIST_SUCCESS:
       return {...state, deckList: action.decks};

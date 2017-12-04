@@ -1,7 +1,7 @@
 import { filterTypes } from './../actions/actionTypes';
 import { filterArray, addToArray } from './utilityFunctions'
 
-export function filterReducer(state = [], action) {
+export function filterReducer(state = {}, action) {
   switch(action.type) {
     case filterTypes.FILTER_RESET:
       return {...state, filters: {}};

@@ -1,7 +1,7 @@
 import { deckTypes } from './../actions/actionTypes';
 import { addToArray, filterArray, findInArray } from './utilityFunctions';
 
-export function deckReducer(state = [], action) {
+export function deckReducer(state = {}, action) {
   switch(action.type) {
 
     case deckTypes.ADD_DECK_SUCCESS:

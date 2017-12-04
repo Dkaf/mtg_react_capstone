@@ -1,6 +1,6 @@
 import { loginTypes } from './../actions/actionTypes';
 
-export default function loginReducer (state = [], action) {
+export function loginReducer (state = {}, action) {
   switch(action.type) {
     case loginTypes.LOGIN_SUCCESS:
       return {...state, user: action.username, password: action.password, isLoggedIn: true};
