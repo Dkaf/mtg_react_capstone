@@ -1,28 +1,26 @@
 'use strict'
 import {createStore, combineReducers, applyMiddleware } from 'redux';
-import initialState from './initialState';
 
-import { addUser } from './reducers/addUser';
-import { card } from './reducers/card';
-import { deck } from './reducers/deck';
-import { decklist } from './reducers/decklist';
-import { filters } from './reducers/filters';
-import { login } from './reducers/login';
-import { removeUser } from './reducers/removeUser';
+import { addUserReducer } from './reducers/addUser';
+import { cardReducer } from './reducers/card';
+import { deckReducer } from './reducers/deck';
+import { decklistReducer } from './reducers/decklist';
+import { filterReducer } from './reducers/filters';
+import { loginReducer } from './reducers/login';
+import { removeUserReducer } from './reducers/removeUser';
 
 const redux = require('redux');
 const thunk = require('redux-thunk').default;
-const reducers = require('./reducers/index');
 
-const mainReducer = combineReducers({
-  addUser,
-  card,
-  deck,
-  decklist,
-  filters,
-  login,
-  removeUser
+const rootReducer = combineReducers({
+  addUser: addUserReducer,
+  card: cardReducer,
+  deck: deckReducer,
+  decklist: decklistReducer,
+  filters: filterReducer,
+  login: loginReducer,
+  removeUser: removeUserReducer
 });
 
-const store = createStore(mainReducer, applyMiddleware(thunk));
-export default store;
+const store = createStore(rootReducer, applyMiddleware(thunk));
+export default store
