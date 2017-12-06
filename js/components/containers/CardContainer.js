@@ -1,11 +1,12 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-const store = require('../store');
-const actions = require('../actions/index');
-const connect = require('react-redux').connect;
+import store from '../store';
+import Actions from '../actions/index';
+import { connect } from 'react-redux';
 
-class Card extends React.Component {
+import Card from './../stateless/Card';
+export class CardContainer extends Component {
 	constructor(props) {
 		super(props)
 		this.removeCard = this.removeCard.bind(this);
@@ -21,13 +22,10 @@ class Card extends React.Component {
 
 	render() {
 		return (
-			<div className="card">
-				<ul>
-					<li className="cardName">{this.props.name}</li>
-					<li className="cardImage"><img src={this.props.imageUrl}></img></li>
-				</ul>
-				<a href="#" onClick={this.removeCard}>Remove</a>
-			</div>
+			<Card name={this.props.name}
+				imageUrl={this.props.image}
+				onClick={this.removeCard}
+			/>
 		)
 	}
 };
@@ -43,4 +41,4 @@ let mapStateToProps = (state, props) => {
 
 let Container = connect(mapStateToProps)(Card);
 
-module.exports = Container;
+export default Container;
