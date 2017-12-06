@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import store from '../../store';
 import { addCard } from '../../actions/card';
 import { updateDecklist } from '../../actions/decklist';
-import Button from './../presentational/button';
-import { connect} from 'react-redux';
+import Button from './../stateless/Button';
+import { connect } from 'react-redux';
 
 export class AddCard extends Component {
 	constructor(props) {
@@ -23,7 +23,6 @@ export class AddCard extends Component {
 			Promise.resolve(store.dispatch(updateDecklist(this.props.card))).then( () => {
 				return store.dispatch(addCard(this.props.selectedDeck.name, this.props.selectedDeck.cards, this.props.user, this.props.password))
 			})
-			console.log(store.getState())
 		}
 	}
 
