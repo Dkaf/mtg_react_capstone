@@ -1,11 +1,11 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const store = require('../store');
-const actions = require('../actions/index');
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import store from '../store';
+import actions from '../actions/index';
 
-const Button = require('./button');
+import Button from './../stateless/Button';
 
-class RemoveDeck extends React.Component {
+class RemoveDeck extends Component {
 	constructor(props) {
 		super(props);
 		this.clickHandler = this.clickHandler.bind(this);
@@ -23,4 +23,4 @@ class RemoveDeck extends React.Component {
 	}
 }
 
-module.exports = RemoveDeck;
+export default RemoveDeck;
