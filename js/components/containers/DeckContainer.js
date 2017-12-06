@@ -1,16 +1,14 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const store = require('../store');
-const actions = require('../actions/index');
+import store from '../store';
+import Actions from '../actions/index';
 
-const RemoveDeck = require('./remove_deck');
-const Card = require('./card');
-const connect = require('react-redux').connect
-
+import CardContainer from './CardContainer';
+import { connect } from 'react-redux'
 
 
-class Deck extends React.Component {
+export class DeckContainer extends React.Component {
 	constructor(props){
 		super(props);
 		this.clickHandler = this.clickHandler.bind(this);
@@ -37,7 +35,7 @@ class Deck extends React.Component {
 		let cards = this.props.cards.map( (card) => {
 			return(
 				<div key={card._id}>
-					<Card name={card.name} deck={this.props.deckName} fullCardlist={this.props.fullCardlist} imageUrl={card.imageUrl} />
+					<CardContainer name={card.name} deck={this.props.deckName} fullCardlist={this.props.fullCardlist} imageUrl={card.imageUrl} />
 				</div>
 			);
 		});
@@ -47,13 +45,11 @@ class Deck extends React.Component {
 		};
 		deckIsActive();
 		return (
-			<div className="deck">
-				<h3 className={deckIsActive()} onClick={this.clickHandler}>{this.props.deckName}</h3>
-				<span className="deckFormat">Format: {this.props.deckFormat}</span>
-				<span id="averageCmc">Average Cmc: {averageCmc}</span>
-				<RemoveDeck className="removeDeckButton" deckName={this.props.deckName} />
-				<div className="cardList" >{cards}</div>
-			</div>
+			<Deck className={deckIsActive()}
+				clickHandler={this.clickHandler}
+				deckName={this.props.deckName}
+				deckFormat={this.props.deckFormat}	
+			/>
 		);
 	}
 }
@@ -67,4 +63,4 @@ let mapStateToProps = (state, props) => {
 let Container = connect(mapStateToProps)(Deck);
 
 
-module.exports = Container;
+export default Container;
