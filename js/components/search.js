@@ -1,13 +1,13 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const store = require('../store')
-const actions = require('../actions/index');
-const connect = require('react-redux').connect;
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import store from '../store';
+import actions from '../actions/index';
+import { connect } from 'react-redux';
 
-const Input = require('./input');
-const Checkbox = require('./checkbox');
-const Button = require('./button');
-const AddCard = require('./add_card');
+import Input from './stateless/Input';
+import Checkbox from './stateless/Checkbox';
+import Button from './stateless/Button';
+import AddCardContainer from './containters/AddCardContainer';
 
 class Search extends React.Component {
 
@@ -80,24 +80,8 @@ class Search extends React.Component {
 				<form onSubmit={this.submitHandler}>
 					<Input className="cardSearch" id="cardNameInput" type="search" placeholder="Card Name" onChange={this.nameFilter} />
 					<Input className="cardSearch" id="manaCostInput" type="search" placeholder="Mana Cost" onChange={this.cmcFilter} />
-					<select id="typeSelector" onChange={this.typeFilter}>
-						<option>Card Type</option>
-						<option value="artifact">Artifact</option>
-						<option value="creature">Creatue</option>
-						<option value="enchantment">Enchantment</option>
-						<option value="instant">Instant</option>
-						<option value="land">Land</option>
-						<option value="planeswalker">Planeswalker</option>
-						<option value="sorcery">Sorcery</option>
-					</select>
-					<select id="raritySelector" onChange={this.rarityFilter}>
-						<option>Rarity</option>
-						<option value="basic land">Basic Land</option>
-						<option value="common">Common</option>
-						<option value="uncommon">Uncommon</option>
-						<option value="rare">Rare</option>
-						<option value="mythic rare">Mythic Rare</option>
-					</select>
+					<SelectMenu className="typeSelector" name="Card Type" options={}/>
+					<SelectMenu className="raritySelector" name="Rarity" options={}/>
 					<label htmlFor="blackSelect" id="colorLabel">Colors</label>
 					<fieldset className="colorSelector">
 						<Checkbox className="colorOption" id="blackSelect" value="black" image="css/black_mana_button.png" onClick={this.colorFilter} />
@@ -128,4 +112,4 @@ let mapStateToProps = (state, props) => {
 
 let Container = connect(mapStateToProps)(Search);
 
-module.exports = Container;
+export default Container;
