@@ -43,6 +43,6 @@ let mapStateToProps = (state, props) => {
 	}
 };
 
-const Container = connect(mapStateToProps)(Greeting);
+const Container = connect(mapStateToProps)(GreetingContainer);
 
 export default Container;

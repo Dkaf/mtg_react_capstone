@@ -39,6 +39,6 @@ let mapStateToProps = (state, props) => {
 	}
 }
 
-let Container = connect(mapStateToProps)(Card);
+let Container = connect(mapStateToProps)(CardContainer);
 
 export default Container;

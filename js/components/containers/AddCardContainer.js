@@ -7,7 +7,7 @@ import { updateDecklist } from '../../actions/decklist';
 import Button from './../stateless/Button';
 import { connect } from 'react-redux';
 
-export class AddCard extends Component {
+export class AddCardContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.clickHandler = this.clickHandler.bind(this);
@@ -41,4 +41,4 @@ let mapStateToProps = (state, props) => {
 	}
 }
 
-export default connect(mapStateToProps)(AddCard);
+export default connect(mapStateToProps)(AddCardContainer);

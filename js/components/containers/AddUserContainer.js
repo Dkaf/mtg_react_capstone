@@ -56,6 +56,6 @@ let mapStateToProps = (state, props) => {
 	}
 };
 
-const Container = connect(mapStateToProps)(AddUser);
+const Container = connect(mapStateToProps)(AddUserContainer);
 
 export default Container;

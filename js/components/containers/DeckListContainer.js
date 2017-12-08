@@ -28,6 +28,6 @@ let mapStateToProps = (state, props) => {
 	}
 };
 
-const Container = connect(mapStateToProps)(DeckList)
+const Container = connect(mapStateToProps)(DeckListContainer)
 
 export default Container;

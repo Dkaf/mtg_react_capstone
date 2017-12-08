@@ -49,6 +49,6 @@ let mapStateToProps = (state, props) => {
 	}
 };
 
-const Container = connect(mapStateToProps)(AddDeck);
+const Container = connect(mapStateToProps)(AddDeckContainer);
 
 export default Container
