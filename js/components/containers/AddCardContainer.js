@@ -33,7 +33,7 @@ export class AddCardContainer extends Component {
 	}
 }
 
-let mapStateToProps = (state, props) => {
+const mapStateToProps = (state, props) => {
 	return {
 		selectedDeck: state.selectedDeck,
 		user: state.user,
