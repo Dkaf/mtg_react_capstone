@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Checkbox from './../../js/components/presentational/checkbox';
+import Checkbox from './../../js/components/stateless/Checkbox';
 
 function setup() {
   const props = {
