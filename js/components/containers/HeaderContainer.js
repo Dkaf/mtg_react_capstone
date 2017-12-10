@@ -7,7 +7,7 @@ const actions = require('../actions/index')
 const connect = require('react-redux').connect
 
 const Input = require('./input');
-const Greeting = require('./greeting')
+const GreetingContainer = require('./containers/GreetingContainer')
 
 class Header extends React.Component {
 	constructor(props) {
@@ -32,7 +32,7 @@ class Header extends React.Component {
 		return (
 			<div id="headerDiv">
 				<img id="mainBanner" src='css/banner.png'></img>
-				<Greeting onSubmit={this.login} usernameChange={this.usernameHandler}
+				<GreetingContainer onSubmit={this.login} usernameChange={this.usernameHandler}
 						  passwordChange={this.passwordHandler} onClick={this.login} />
 			</div>
 		);
