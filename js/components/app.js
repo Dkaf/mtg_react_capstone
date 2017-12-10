@@ -1,13 +1,11 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-const Header = require('./header');
-const User = require('./user');
-const AddUser = require('./add_user');
-const Search = require('./search')
-const Footer = require('./footer')
-const actions = require('../actions/index');
-const store = require('../store')
+import Header from './header';
+import User from './user';
+import AddUser from './add_user';
+import Search from './search';
+import Footer from './footer'
 
 const App = () => {
 	return (
@@ -22,4 +20,4 @@ const App = () => {
 }
 
 
-module.exports = App;
+export default App;
