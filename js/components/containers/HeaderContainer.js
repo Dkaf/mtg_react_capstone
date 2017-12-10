@@ -1,13 +1,11 @@
-const React = require('react');
-const ReactDOM = require('react-dom');
-const router = require('react-router');
-const Link = router.Link;
-const store = require('../store');
-const actions = require('../actions/index')
-const connect = require('react-redux').connect
+import React from 'react';
+import ReactDOM from 'react-dom';
+import store from '../../store';
+import { loginUsername, loginPassword } from '../../actions/login';
+import { connect } from 'react-redux';
 
-const Input = require('./input');
-const GreetingContainer = require('./containers/GreetingContainer')
+import Input from './../stateless/Input';
+import GreetingContainer from './GreetingContainer';
 
 class Header extends React.Component {
 	constructor(props) {
@@ -49,4 +47,4 @@ let mapStateToProps = (state, props) => {
 const Container = connect(mapStateToProps)(Header)
 
 
-module.exports = Container;
+export default Container;
