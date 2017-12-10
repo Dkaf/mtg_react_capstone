@@ -2,3 +2,4 @@ node_modules
 *.log
 auth0_vars.js
 .vscode/
+build/
