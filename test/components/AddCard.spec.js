@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'redux-test-utils';
-import ConnectedAddCard, { AddCard } from './../../js/components/containers/add_card';
+import ConnectedAddCard, { AddCardContainer } from './../../js/components/containers/AddCardContainer';
 import { thunk, create } from './mockRedux'
 
 function setup() {
@@ -49,7 +49,7 @@ function setup() {
 describe('AddCard container component', () => {
   const { wrapper, store } = setup();
   const SmartComponent = wrapper.find(ConnectedAddCard);
-  const Component = wrapper.find(AddCard);
+  const Component = wrapper.find(AddCardContainer);
 
   it('should render component with store successfully', () => {
     expect(SmartComponent.length).toEqual(1)
