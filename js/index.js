@@ -1,13 +1,13 @@
 require('babel-polyfill');
 
-const React = require('react');
-const ReactDOM = require('react-dom');
-const Provider = require('react-redux').Provider;
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-const store = require('./store')
+import store from './store';
 
-const App = require('./components/app');
-const User = require('./components/user');
+import App from './components/stateless/App';
+import User from './components/stateless/User';
 
 document.addEventListener('DOMContentLoaded', () => {
 	ReactDOM.render(
