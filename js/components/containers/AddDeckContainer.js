@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import store from '../store';
-import Actions from '../actions/index';
+import { addDeck, deckName, deckFormat } from '../../actions/deck';
 import { connect } from 'react-redux';
 import AddDeck from './../stateless/AddDeck';
 export class AddDeckContainer extends Component {
@@ -15,16 +15,16 @@ export class AddDeckContainer extends Component {
 	submitHandler(e) {
 		e.preventDefault();
 		console.log(store.getState())
-		this.props.dispatch(Actions.addDeck(store.getState().deckName, store.getState().deckFormat, store.getState().user, store.getState().password))
+		this.props.dispatch(addDeck(store.getState().deckName, store.getState().deckFormat, store.getState().user, store.getState().password))
 		e.target.reset();
 	}
 
 	nameInputHandler(e) {
-		this.props.dispatch(Actions.deckName(e.target.value))
+		this.props.dispatch(deckName(e.target.value))
 	}
 
 	formatInputHandler(e) {
-		this.props.dispatch(Actions.deckFormat(e.target.value))
+		this.props.dispatch(deckFormat(e.target.value))
 	}
 
 	//Input handler

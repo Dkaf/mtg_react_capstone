@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import store from '../store';
-import actions from '../actions/index';
+import { newUsername, newPassword, confirmedPassword, addUser } from '../../actions/addUser';
 import { connect } from 'react-redux';
 
 import AddUser from './../stateless/AddUser'
@@ -12,16 +12,16 @@ export class AddUserContainer extends Component {
 	}
 
 	newUsername(e) {
-		store.dispatch(actions.newUsername(e.target.value));
+		store.dispatch(newUsername(e.target.value));
 	}
 
 	newPassword(e) {
-		store.dispatch(actions.newPassword(e.target.value));
+		store.dispatch(newPassword(e.target.value));
 		console.log(store.getState())
 	}
 
 	confirmPassword(e) {
-		store.dispatch(actions.confirmedPassword(e.target.value))
+		store.dispatch(confirmedPassword(e.target.value))
 	}
 
 	submitHandler(e) {
@@ -31,7 +31,7 @@ export class AddUserContainer extends Component {
 		}
 
 		else {
-			store.dispatch(actions.addUser(store.getState().newUsername, store.getState().confirmedPassword));
+			store.dispatch(addUser(store.getState().newUsername, store.getState().confirmedPassword));
 		}
 	}
 

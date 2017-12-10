@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import store from '../store';
-import actions from '../actions/index';
+import store from '../../store';
+import { removeDeck } from '../../actions/deck';
 
 import Button from './../stateless/Button';
 
-class RemoveDeck extends Component {
+class RemoveDeckContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.clickHandler = this.clickHandler.bind(this);
@@ -13,14 +13,14 @@ class RemoveDeck extends Component {
 
 	clickHandler(e) {
 		e.preventDefault();
-		store.dispatch(actions.removeDeck(this.props.deckName));
+		store.dispatch(removeDeck(this.props.deckName));
 	}
 
 	render() {
 		return (
-				<Button className={this.props.className} text="remove deck" deckName={this.props.deckName} onClick={this.clickHandler}/>
+				<Button className={this.props.className} text="remove deck" deckName={this.props.deckName} onClick={this.clickHandler} type="submit"/>
 		);
 	}
 }
 
-export default RemoveDeck;
+export default RemoveDeckContainer;

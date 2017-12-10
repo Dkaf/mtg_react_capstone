@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import store from '../store';
-import actions from '../actions/index';
+import { logout } from '../../actions/login';
 import { connect } from 'react-redux';
 
 import LoginForm from './../stateless/LoginForm';
@@ -15,7 +15,7 @@ export class GreetingContainer extends Component{
 
 	logout(e) {
 		e.preventDefault();
-		store.dispatch(actions.logout());
+		store.dispatch(logout());
 	}
 
 	render(){

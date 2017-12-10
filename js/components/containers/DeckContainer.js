@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import store from '../store';
-import Actions from '../actions/index';
+import store from '../../store';
+import { deckIsActive, selectDeck } from '../../actions/deck';
 
 import CardContainer from './CardContainer';
 import { connect } from 'react-redux'
@@ -18,8 +18,8 @@ export class DeckContainer extends React.Component {
 		if(this.props.selectedDeck.name == this.props.deckName) {
 			return null
 		} else{
-			store.dispatch(actions.deckIsActive());
-			store.dispatch(actions.selectDeck(this.props.deckName));
+			store.dispatch(deckIsActive());
+			store.dispatch(selectDeck(this.props.deckName));
 		}
 		console.log(store.getState())
 		}
@@ -48,7 +48,9 @@ export class DeckContainer extends React.Component {
 			<Deck className={deckIsActive()}
 				clickHandler={this.clickHandler}
 				deckName={this.props.deckName}
-				deckFormat={this.props.deckFormat}	
+				deckFormat={this.props.deckFormat}
+				averageCmc={averageCmc}
+				cards={cards}	
 			/>
 		);
 	}
@@ -60,7 +62,7 @@ let mapStateToProps = (state, props) => {
 	}
 }
 
-let Container = connect(mapStateToProps)(Deck);
+let Container = connect(mapStateToProps)(DeckContainer);
 
 
 export default Container;

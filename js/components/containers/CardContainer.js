@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import store from '../store';
-import Actions from '../actions/index';
+import { updateDeck, removeCard } from '../../actions/card';
 import { connect } from 'react-redux';
 
 import Card from './../stateless/Card';
@@ -14,8 +14,8 @@ export class CardContainer extends Component {
 
 	removeCard(e) {
 		e.preventDefault();
-		Promise.resolve(store.dispatch(actions.updateDeck(this.props.deck, this.props.fullCardlist, this.props.name))).then( () => {
-			return store.dispatch(actions.removeCard(this.props.editedDeck.name, this.props.editedDeck.cards, this.props.user, this.props.password))
+		Promise.resolve(store.dispatch(updateDeck(this.props.deck, this.props.fullCardlist, this.props.name))).then( () => {
+			return store.dispatch(removeCard(this.props.editedDeck.name, this.props.editedDeck.cards, this.props.user, this.props.password))
 		})
 	}
 
