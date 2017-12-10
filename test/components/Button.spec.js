@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Button from './../../js/components/presentational/button';
+import Button from './../../js/components/stateless/Button';
 
 function setup() {
   const props = {
