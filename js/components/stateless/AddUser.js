@@ -11,7 +11,7 @@ const AddUser = (props) => {
       <Input className="addUserInput" placeholder="username" type="search" onChange={props.newUsername} />
       <Input className="addUserInput" placeholder="password" type="password" onChange={props.newPassword} />
       <Input className="addUserInput" placeholder="confirm password" type="password" onChange={props.confirmPassword} />
-      <Button type="submit" text="submit" />
+      <Button className="addUserButton" type="submit" text="submit" />
     </form>
   </div>
   )
