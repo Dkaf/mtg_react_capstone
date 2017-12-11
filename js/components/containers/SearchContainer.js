@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import Input from './../stateless/Input';
 import Checkbox from './../stateless/Checkbox';
-import Button from './../stateless/Button';
+import Button from './../stateless/Button/Button';
 import SelectMenu from './../stateless/SelectMenu';
 import AddCardContainer from './AddCardContainer';
 

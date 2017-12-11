@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import store from '../../store';
 import { removeDeck } from '../../actions/deck';
 
-import Button from './../stateless/Button';
+import Button from './../stateless/Button/Button';
 
 class RemoveDeckContainer extends Component {
 	constructor(props) {
