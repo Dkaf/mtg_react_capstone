@@ -1,0 +1,17 @@
+.addDeckDiv {
+	font-size: 1.5em;
+	float: left;
+	width: 100%;
+	text-align: center;
+}
+
+.deckInput {
+	height: 40px;
+	width: 270px;
+	font-size: .75em;
+	text-align: center;
+}
+
+.addDeck {
+	font-size: .75em;
+}
