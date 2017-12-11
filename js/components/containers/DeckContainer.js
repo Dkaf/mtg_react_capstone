@@ -5,6 +5,7 @@ import store from '../../store';
 import { deckIsActive, selectDeck } from '../../actions/deck';
 
 import CardContainer from './CardContainer';
+import Deck from './../stateless/Deck';
 import { connect } from 'react-redux'
 
 
