@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import store from '../../store';
 import { addDeck, deckName, deckFormat } from '../../actions/deck';
 import { connect } from 'react-redux';
-import AddDeck from './../stateless/AddDeck';
+import AddDeck from './../stateless/AddDeck/AddDeck';
 export class AddDeckContainer extends Component {
 	constructor(props) {
   	super(props);
