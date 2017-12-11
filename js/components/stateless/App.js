@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Header from './header';
-import User from './user';
-import AddUser from './add_user';
-import Search from './search';
-import Footer from './footer'
+import HeaderContainer from './../containers/HeaderContainer';
+import User from './User';
+import AddUserContainer from './../containers/AddUserContainer';
+import SearchContainer from './../containers/SearchContainer';
+import Footer from './Footer'
 
 const App = () => {
 	return (
 		<div>
-			<Header />
-			<AddUser />
+			<HeaderContainer />
+			<AddUserContainer />
 			<User />
-			<Search />
+			<SearchContainer />
 			<Footer />
 		</div>
 	);
