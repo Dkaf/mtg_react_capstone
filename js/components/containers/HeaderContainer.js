@@ -4,7 +4,7 @@ import store from '../../store';
 import { loginUsername, loginPassword } from '../../actions/login';
 import { connect } from 'react-redux';
 
-import Input from './../stateless/Input';
+import Input from './../stateless/Input/Input';
 import GreetingContainer from './GreetingContainer';
 
 class Header extends React.Component {

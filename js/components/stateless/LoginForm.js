@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Input from './Input';
+import Input from './Input/Input';
 
 const LoginForm = (props) => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Input from './../../js/components/stateless/Input';
+import Input from './../../js/components/stateless/Input/Input';
 
 function setup() {
   const props = {

@@ -5,7 +5,7 @@ import { cardSearch, pageForward, pageBack} from '../../actions/card';
 import { filterReset, nameFilter, typeFilter, cmcFilter, rarityFilter, colorFilter, removeColorFilter } from '../../actions/filters';
 import { connect } from 'react-redux';
 
-import Input from './../stateless/Input';
+import Input from './../stateless/Input/Input';
 import Checkbox from './../stateless/Checkbox';
 import Button from './../stateless/Button/Button';
 import SelectMenu from './../stateless/SelectMenu';
