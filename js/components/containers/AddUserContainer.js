@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import store from '../store';
+import store from '../../store';
 import { newUsername, newPassword, confirmedPassword, addUser } from '../../actions/addUser';
 import { connect } from 'react-redux';
 

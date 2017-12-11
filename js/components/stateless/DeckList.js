@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Deck from './../deck'
+import Deck from './Deck'
 const Decklist = (props) => {
   const decks = props.decks.map(( deck, i) => {
     deck.cards = deck.cards.sort((a,b) => {

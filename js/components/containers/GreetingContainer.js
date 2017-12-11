@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import store from '../store';
+import store from '../../store';
 import { logout } from '../../actions/login';
 import { connect } from 'react-redux';
 

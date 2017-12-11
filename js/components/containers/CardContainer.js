@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import store from '../store';
+import store from '../../store';
 import { updateDeck, removeCard } from '../../actions/card';
 import { connect } from 'react-redux';
 
