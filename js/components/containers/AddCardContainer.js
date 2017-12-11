@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import store from '../../store';
 import { addCard } from '../../actions/card';
 import { updateDecklist } from '../../actions/decklist';
-import Button from './../stateless/Button';
+import Button from './../stateless/Button/Button';
 import { connect } from 'react-redux';
 
 export class AddCardContainer extends Component {
