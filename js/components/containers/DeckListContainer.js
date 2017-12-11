@@ -11,7 +11,7 @@ export class DeckListContainer extends Component {
 		render() {
 			if(this.props.isLoggedIn) {
 				return (
-					<DeckList decks={this.props.decks} selectedDeck={this.props.selectedDeck}/>
+					<DeckList decks={this.props.decks} selectedDeck={this.props.selectedDeck.name}/>
 				);
 		} else {
 			return null
@@ -22,9 +22,9 @@ export class DeckListContainer extends Component {
 let mapStateToProps = (state, props) => {
 	return {
 		decks: state.deckList,
-		selectedDeck: state.selectedDeck.name,
-		isLoggedIn: state.isLoggedIn,
-		numberCards: state.selectedDeck.cards
+		selectedDeck: state.selectedDeck,
+		isLoggedIn: state.isLoggedIn
+		// numberCards: state.selectedDeck.cards
 	}
 };
 
