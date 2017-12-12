@@ -11,6 +11,7 @@ import UserGreeting from './../../stateless/UserGreeting/UserGreeting';
 export class GreetingContainer extends Component{
 	constructor(props){
 		super(props);
+		this.logout = this.logout.bind(this);
 	}
 
 	logout(e) {
