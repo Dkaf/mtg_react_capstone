@@ -15,15 +15,15 @@ class Header extends React.Component {
 	}
 
 	usernameHandler(e) {
-		store.dispatch(actions.loginUsername(e.target.value));
+		store.dispatch(loginUsername(e.target.value));
 	}
 
 	passwordHandler(e) {
-		store.dispatch(actions.loginPassword(e.target.value));
+		store.dispatch(loginPassword(e.target.value));
 	}
 
 	login() {
-		store.dispatch(actions.login(store.getState().user, store.getState().password));
+		store.dispatch(login(store.getState().user, store.getState().password));
 		console.log(store.getState())
 	}
 
