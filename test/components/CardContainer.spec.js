@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'redux-test-utils';
-import AddCardContainer from './../../js/components/containers/AddCardContainer';
+import CardContainer from './../../js/components/containers/CardContainer/CardContainer';
 import { thunk, create } from './mockRedux';
 
 
@@ -15,7 +15,7 @@ function setup() {
 
   const wrapper = mount(
     <Provider store={store}>
-      <AddCardContainer />
+      <CardContainer />
     </Provider>
   )
 
@@ -26,9 +26,9 @@ function setup() {
   }
 }
 
-describe('AddCardContainer component', () => {
+describe('CardContainer component', () => {
   const { store, wrapper } = setup();
-  const Component = wrapper.find(AddCardContainer);
+  const Component = wrapper.find(CardContainer);
 
   it('should render the correct component', () => {
     expect(Component.length).toEqual(1);

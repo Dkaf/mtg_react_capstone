@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'redux-test-utils';
-import GreetingContainer from './../../js/components/containers/GreetingContainer';
+import GreetingContainer from './../../js/components/containers/GreetingContainer/GreetingContainer';
 import { thunk, create } from './mockRedux';
 
 

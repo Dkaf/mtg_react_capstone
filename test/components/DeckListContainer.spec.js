@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'redux-test-utils';
-import DeckListContainer from './../../js/components/containers/DeckListContainer';
+import DeckListContainer from './../../js/components/containers/DeckListContainer/DeckListContainer';
 import { thunk, create } from './mockRedux';
 
 

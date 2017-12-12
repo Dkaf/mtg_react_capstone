@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Card from './../../js/components/stateless/Card';
+import Card from './../../js/components/stateless/Card/Card';
 
 function setup() {
   const props = {

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'redux-test-utils';
-import ConnectedAddCard, { AddCardContainer } from './../../js/components/containers/AddCardContainer';
+import ConnectedAddCard, { AddCardContainer } from './../../js/components/containers/AddCardContainer/AddCardContainer';
 import { thunk, create } from './mockRedux'
 
 function setup() {

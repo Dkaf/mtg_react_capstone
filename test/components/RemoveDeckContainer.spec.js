@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'redux-test-utils';
-import RemoveDeckContainer from './../../js/components/containers/RemoveDeckContainer';
+import RemoveDeckContainer from './../../js/components/containers/RemoveDeckContainer/RemoveDeckContainer';
 import { thunk, create } from './mockRedux';
 
 

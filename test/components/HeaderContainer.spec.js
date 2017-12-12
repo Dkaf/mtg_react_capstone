@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'redux-test-utils';
-import HeaderContainer from './../../js/components/containers/HeaderContainer';
+import HeaderContainer from './../../js/components/containers/HeaderContainer/HeaderContainer';
 import { thunk, create } from './mockRedux';
 
 

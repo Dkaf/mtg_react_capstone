@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount, render } from 'enzyme';
 import { Provider } from 'react-redux';
 import { createMockStore } from 'redux-test-utils';
-import SearchContainer from './../../js/components/containers/SearchContainer';
+import SearchContainer from './../../js/components/containers/SearchContainer/SearchContainer';
 import { thunk, create } from './mockRedux';
 
 

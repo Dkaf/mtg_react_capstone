@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { mount } from 'enzyme';
 
-import Deck from './../../js/components/stateless/Deck';
+import Deck from './../../js/components/stateless/Deck/Deck';
 
 function setup() {
   const props = {
