@@ -16,7 +16,14 @@ class SearchContainer extends React.Component {
 
 	constructor(props){
 		super(props);
-		this.pageForward
+		this.submitHandler = this.submitHandler.bind(this);
+		this.pageForward = this.pageForward.bind(this);
+		this.pageBack = this.pageBack.bind(this);
+		this.nameFilter = this.nameFilter.bind(this);
+		this.cmcFilter = this.cmcFilter.bind(this);
+		this.typeFilter = this.typeFilter.bind(this);
+		this.rarityFilter = this.rarityFilter.bind(this);
+		this.colorFilter = this.colorFilter.bind(this);
 	}
 
 	submitHandler(e) {
