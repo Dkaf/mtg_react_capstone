@@ -5,9 +5,6 @@ import { connect } from 'react-redux';
 import DeckList from './../../stateless/DeckList/DeckList';
 
 export class DeckListContainer extends Component {
-	constructor(props) {
-		super(props);
-	}
 		render() {
 			if(this.props.isLoggedIn) {
 				return (
