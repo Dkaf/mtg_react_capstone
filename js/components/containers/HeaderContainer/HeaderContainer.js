@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import store from '../../../store';
-import { loginUsername, loginPassword } from '../../../actions/login';
+import { loginUsername, loginPassword, login } from '../../../actions/login';
 import { connect } from 'react-redux';
 
 import Input from './../../stateless/Input/Input';
@@ -10,7 +10,7 @@ import styles from './styles.css';
 
 class Header extends React.Component {
 	constructor(props) {
-  		super(props);
+  	super(props);
 		this.login = this.login.bind(this);
 	}
 
