@@ -1,0 +1,44 @@
+.searchDiv {
+	text-align: center;
+	margin-bottom: 25px;
+	width: 100%;
+	float: left;
+}
+
+.searchDiv h2 {
+	font-size: 2em;
+}
+
+.searchDiv select {
+	width: 200px;
+	height: 34px;
+	font-size: 1.5em;
+	text-align: center;
+	border: none;
+	margin-right: 5px;
+	color: rgb(43, 58, 58)
+}
+
+.colorSelector {
+	text-align: center;
+	border: none;
+}
+
+.submitButton {
+	height: 34px;
+	width: 100px;
+	font-size: 1.5em;
+}
+
+
+#colorLabel {
+	display: block;
+	font-size: 1.5em;
+}
+
+.cardSearch {
+	width: 346px;
+	height: 42px;
+	font-size: 1.5em;
+	text-align: center;
+}

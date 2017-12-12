@@ -1,0 +1,11 @@
+.footerDiv {
+	float: left;
+	height: 50px;
+	width: 100%;
+	background-color: rgb(60, 95, 94);
+}
+
+.footerName {
+	padding-right: 15px;
+	color: black;
+}

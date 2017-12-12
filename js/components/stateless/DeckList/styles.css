@@ -1,0 +1,12 @@
+.selectedDeck {
+	text-align: left;
+	position: absolute;
+	top: 0;
+	left:0;
+}
+
+@media (max-width: 655px) {
+	.selectedDeck {
+		font-size: .6em;
+	}
+}

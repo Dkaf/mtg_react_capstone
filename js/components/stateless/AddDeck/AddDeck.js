@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Input from './../Input/Input';
-import Button from './Button/Button';
+import Button from './../Button/Button';
 import PropTypes from 'prop-types';
 import styles from './styles.css';
 

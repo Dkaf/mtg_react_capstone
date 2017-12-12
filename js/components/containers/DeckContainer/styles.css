@@ -1,0 +1,12 @@
+.deckName {
+	margin-bottom: 2px;
+}
+
+.deckActive {
+	text-decoration: underline;
+}
+
+.deckName:hover{
+	cursor: pointer;
+	opacity: .75;
+}

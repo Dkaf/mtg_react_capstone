@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import HeaderContainer from './../containers/HeaderContainer';
-import User from './User';
-import AddUserContainer from './../containers/AddUserContainer';
-import SearchContainer from './../containers/SearchContainer';
-import Footer from './Footer'
+import HeaderContainer from './../containers/HeaderContainer/HeaderContainer';
+import User from './User/User';
+import AddUserContainer from './../containers/AddUserContainer/AddUserContainer';
+import SearchContainer from './../containers/SearchContainer/SearchContainer';
+import Footer from './Footer/Footer'
 
 const App = () => {
 	return (

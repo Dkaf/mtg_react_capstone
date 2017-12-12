@@ -1,0 +1,29 @@
+.loginForm {
+	position: absolute;;
+	top: 15%;
+	left: 65%;
+	font-size: 1.30em;
+}
+
+.login {
+	position: absolute;
+	color: white;
+	left: 6%;
+	margin: 5px;
+}
+
+.login:hover {
+	cursor: pointer;
+}
+
+@media (max-width: 500px) {
+	.loginForm {
+		position: static;
+		left: 0;
+		top: 0;
+		margin-bottom: 15px;
+	}
+	.loginLink {
+		color: rgb(60, 95, 94);
+	}
+}

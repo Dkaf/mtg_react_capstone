@@ -1,0 +1,43 @@
+.card {
+  position: relative;
+  float: left;
+  padding: 5px;
+}
+
+.card > ul {
+	list-style: none;
+}
+
+.cardName {
+	display: none;
+}
+
+.cardImage > img {
+  display: block;
+  width: 200px;
+  transition: .1s transform;
+  transform: translateZ(0); /* hack */
+}
+
+.card:hover {
+  z-index: 1;
+}
+
+.cardImage:hover > img {
+  transform: scale(1.7,1.7);
+  transition: .3s transform;
+}
+
+@media (max-width: 655px) {
+	.card {
+		float: none;
+		transition: none;
+		transform: none;
+		text-align: left;
+  }
+  
+  .cardImage:hover > img {
+		transition: none;
+		transform: none;
+  }
+}
