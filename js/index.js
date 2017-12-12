@@ -7,7 +7,6 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import App from './components/stateless/App';
-import User from './components/stateless/User';
 
 document.addEventListener('DOMContentLoaded', () => {
 	ReactDOM.render(
