@@ -72,18 +72,22 @@ class SearchContainer extends React.Component {
 		console.log(store.getState().filters)
 	}
 
-	render() {
-		// let pageContent = this.props.searchResults.slice(this.props.page * this.props.pageSize, (this.props.page * this.props.pageSize) + this.props.pageSize)
+	getPage() {
+		let pageContent = this.props.searchResults.slice(this.props.page * this.props.pageSize, (this.props.page * this.props.pageSize) + this.props.pageSize)
+		
+		return pageContent.map( (key) => {
+			console.log(key);
+			return (
+				<li>
+					<img src={key.imageUrl}></img>
+					<AddCardContainer card={key} />
+				</li>
+			)
+		})
+	}
 
-		// let searchResults = pageContent.map( (key) => {
-		// 	console.log(key);
-		// 	return (
-		// 		<li>
-		// 			<img src={key.imageUrl}></img>
-		// 			<AddCardContainer card={key} />
-		// 		</li>
-		// 	)
-		// })
+	render() {
+
 		return (
 			<div className={styles.searchDiv}>
 				<h2>Card Search</h2>
@@ -103,7 +107,7 @@ class SearchContainer extends React.Component {
 					<Button className={styles.submitButton} type="submit" text="Submit" />
 				</form>
 				<ul>
-
+					{this.props.searchResults ? this.getPage() : null}
 				</ul>
 				<i className="fa fa-arrow-circle-o-left fa-4x pageButton" id="pageBack" aria-hidden="true" onClick={this.pageBack}></i>
 				<i className="fa fa-arrow-circle-o-right fa-4x pageButton" id="pageForward" aria-hidden="true" onClick={this.pageForward}></i>
