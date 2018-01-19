@@ -4,13 +4,32 @@ import store from '../../../store';
 import { cardSearch, pageForward, pageBack} from '../../../actions/card';
 import { filterReset, nameFilter, typeFilter, cmcFilter, rarityFilter, colorFilter, removeColorFilter } from '../../../actions/filters';
 import { connect } from 'react-redux';
+import  { Button, Form, Container, Icon } from 'semantic-ui-react';
 
 import Input from './../../stateless/Input/Input';
 import Checkbox from './../../stateless/Checkbox/Checkbox';
-import Button from './../../stateless/Button/Button';
+// import Button from './../../stateless/Button/Button';
 import SelectMenu from './../../stateless/SelectMenu/SelectMenu';
 import AddCardContainer from './../AddCardContainer/AddCardContainer';
 import styles from './styles.css'
+
+const typeOptions = [
+	'artifact',
+	'creature',
+	'enchantment',
+	'instant',
+	'land',
+	'planeswalker',
+	'sorcery'
+];
+
+const rarityOptions = [
+	'basic land',
+	'common',
+	'uncommon',
+	'rare',
+	'mythic rare'
+]
 
 class SearchContainer extends React.Component {
 
@@ -89,29 +108,29 @@ class SearchContainer extends React.Component {
 	render() {
 
 		return (
-			<div className={styles.searchDiv}>
+			<Container className={styles.searchDiv}>
 				<h2>Card Search</h2>
-				<form onSubmit={this.submitHandler}>
-					<Input className={styles.cardSearch} id="cardNameInput" type="search" placeholder="Card Name" onChange={this.nameFilter} />
-					<Input className={styles.cardSearch}  id="manaCostInput" type="search" placeholder="Mana Cost" onChange={this.cmcFilter} />
-					<SelectMenu className={styles.typeSelector} name="Card Type" onChange={this.typeFilter} options={[1,2,3]} />
-					<SelectMenu className={styles.raritySelector} name="Rarity" onChange={this.rarityFilter} options={[4,5,6]} />
+				<Form size="small" onSubmit={this.submitHandler}>
+					<Form.Input type="search" label="Card Name" onChange={this.nameFilter} />
+					<Form.Input type="search" label="Mana Cost" onChange={this.cmcFilter} />
+					<SelectMenu className={styles.typeSelector} name="Card Type" onChange={this.typeFilter} options={typeOptions} />
+					<SelectMenu className={styles.raritySelector} name="Rarity" onChange={this.rarityFilter} options={rarityOptions} />
 					<label htmlFor="blackSelect" className={styles.colorLabel}>Colors</label>
 					<fieldset className={styles.colorSelector}>
-						<Checkbox className={styles.colorOption} id="blackSelect" value="black" image="css/black_mana_button.png" onClick={this.colorFilter} />
-						<Checkbox className={styles.colorOption} id="blueSelect" value="blue" image="css/blue.png" onClick={this.colorFilter} />
-						<Checkbox className={styles.colorOption} id="greenSelect" value="green" image="css/green.png" onClick={this.colorFilter} />
-						<Checkbox className={styles.colorOption} id="redSelect" value="red" image="css/red.png" onClick={this.colorFilter} />
-						<Checkbox className={styles.colorOption} id="whiteSelect" value="white" image="css/white.png" onClick={this.colorFilter} />
+						<Form.Checkbox className={styles.colorOption} id="blackSelect" value="black" image="css/black_mana_button.png" onClick={this.colorFilter} />
+						<Form.Checkbox className={styles.colorOption} id="blueSelect" value="blue" image="css/blue.png" onClick={this.colorFilter} />
+						<Form.Checkbox className={styles.colorOption} id="greenSelect" value="green" image="css/green.png" onClick={this.colorFilter} />
+						<Form.Checkbox className={styles.colorOption} id="redSelect" value="red" image="css/red.png" onClick={this.colorFilter} />
+						<Form.Checkbox className={styles.colorOption} id="whiteSelect" value="white" image="css/white.png" onClick={this.colorFilter} />
 					</fieldset>
-					<Button className={styles.submitButton} type="submit" text="Submit" />
-				</form>
+					<Button basic color="black" type="submit" content="Submit" />
+				</Form>
 				<ul>
 					{this.props.searchResults ? this.getPage() : null}
 				</ul>
-				<i className="fa fa-arrow-circle-o-left fa-4x pageButton" id="pageBack" aria-hidden="true" onClick={this.pageBack}></i>
-				<i className="fa fa-arrow-circle-o-right fa-4x pageButton" id="pageForward" aria-hidden="true" onClick={this.pageForward}></i>
-			</div>
+				<Icon name="chevron left" size="big" />
+				<Icon name="chevron right" size="big"/>
+			</Container>
 		);
 	}
 }
@@ -124,6 +143,5 @@ let mapStateToProps = (state, props) => {
 	}
 }
 
-let Container = connect(mapStateToProps)(SearchContainer);
 
-export default Container;
+export default connect(mapStateToProps)(SearchContainer);

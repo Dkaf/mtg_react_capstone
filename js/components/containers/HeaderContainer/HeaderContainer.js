@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 import Input from './../../stateless/Input/Input';
 import GreetingContainer from './../GreetingContainer/GreetingContainer';
 import styles from './styles.css';
+import { Header, Container } from 'semantic-ui-react';
 
-class Header extends React.Component {
+class HeaderContainer extends React.Component {
 	constructor(props) {
   	super(props);
 		this.login = this.login.bind(this);
@@ -30,7 +31,7 @@ class Header extends React.Component {
 	render() {
 		return (
 			<div className={styles.headerDiv}>
-				<img className={styles.mainBanner} src='css/banner.png'></img>
+				<Header as="h1">MTG Deck Builder</Header>
 				<GreetingContainer onSubmit={this.login} usernameChange={this.usernameHandler}
 						  passwordChange={this.passwordHandler} onClick={this.login} />
 			</div>
@@ -45,7 +46,5 @@ let mapStateToProps = (state, props) => {
 	}
 }
 
-const Container = connect(mapStateToProps)(Header)
 
-
-export default Container;
+export default connect(mapStateToProps)(Header);
